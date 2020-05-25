@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:text="융합 IT학과"
+            android:text="Prime 창의융합대학"
             android:textSize="30sp"
             android:textColor="#ffffff"
             android:background="#77000000"
@@ -39,7 +39,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:text="학과소개"
+                android:text="단과대학 소개"
                 android:textSize="24sp"
                 android:textColor="#000000"
                 android:paddingLeft="16dp"
@@ -57,19 +57,20 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:text="학과홍보영상"
+                android:text="홍보영상"
                 android:textSize="24sp"
                 android:textColor="#000000"
                 android:paddingLeft="16dp"
                 android:layout_marginTop="16dp"
                 />
-            <com.google.android.youtube.player.YouTubeThumbnailView
-                android:layout_below="@id/item_title"
-                android:id="@+id/item_video"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
+            <kr.co.prnd.YouTubePlayerView
+                android:id="@+id/YouTubePlayerView_major"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingBottom="16dp"
                 />
 
 
