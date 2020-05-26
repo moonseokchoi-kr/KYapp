@@ -72,8 +72,43 @@
                 android:layout_marginTop="16dp"
                 android:paddingBottom="16dp"
                 />
-
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="홍보자료"
+                android:textSize="24sp"
+                android:textColor="#000000"
+                android:paddingLeft="16dp"
+                android:layout_marginTop="16dp"
+                />
+            <RelativeLayout
+                android:id="@+id/RelativeLayout_pdf"
+                android:clickable="true"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="@drawable/btn_green"
+                android:layout_marginTop="6dp"
+                >
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/icons_pdf"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="2021년 홍보자료.pdf"
+                    android:textSize="24dp"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_vertical"
+                    />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
