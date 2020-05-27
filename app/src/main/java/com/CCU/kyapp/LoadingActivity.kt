@@ -14,8 +14,5 @@ class LoadingActivity : AppCompatActivity() {
         ProgressBar_pdf.visibility= View.VISIBLE
         val downLoader : PdfDownLoader = PdfDownLoader(intent.getStringExtra("url"),ProgressBar_pdf,this)
         downLoader.execute()
-        val intent = Intent(this,PdfViewer::class.java)
-        intent.putExtra("filepath",downLoader.filepath)
-        startActivity(intent)
     }
 }

@@ -20,8 +20,8 @@ class PdfViewer : AppCompatActivity(),OnPageChangeListener,OnLoadCompleteListene
         showPdf()
     }
     private fun showPdf(): Unit {
-        Log.d("ViewPDFAct", "FilePath: " + intent.getStringExtra("url"))
         val file = File(intent.getStringExtra("filepath"))
+        Log.d("Filepath","filePath : ${intent.getStringExtra("filepath")}")
         Log.d("File is exist?","File is exist? "+file!!.exists());
                 pdfView.fromFile(file).pages(0, 2, 1, 3, 3, 3)
                     .enableSwipe(true)
