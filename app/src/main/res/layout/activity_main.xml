@@ -4,27 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1F1F1"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:paddingTop="16px"
-        android:text="PRIME 창의융합대학 입학처"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:id="@+id/linearLayout_title"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:padding="16dp"
+        android:gravity="top|center"
+        android:background="#59A372"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16px"
+            android:text="PRIME 창의융합대학 입학처" />
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="180dp"
+        android:layout_height="140dp"
         android:background="@drawable/btn_main"
         android:elevation="10dp"
         android:orientation="vertical"
+        android:layout_marginLeft="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
         app:layout_constraintEnd_toStartOf="@+id/guideline_main"
         app:layout_constraintHorizontal_bias="0.493"
@@ -39,7 +45,7 @@
             android:layout_height="60dp"
             android:layout_centerInParent="true"
             android:paddingBottom="16dp"
-            android:src="@drawable/iconfinder_School" />
+            android:src="@drawable/iconfinder_school" />
 
         <TextView
             android:id="@+id/textView_school"
@@ -55,11 +61,12 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="180dp"
+        android:layout_height="140dp"
         android:background="@drawable/btn_main"
         android:elevation="10dp"
         android:orientation="vertical"
+        android:layout_marginRight="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
@@ -90,11 +97,12 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="180dp"
+        android:layout_height="140dp"
         android:background="@drawable/btn_main"
         android:elevation="10dp"
         android:orientation="vertical"
+        android:layout_marginLeft="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
         app:layout_constraintEnd_toStartOf="@+id/guideline_main"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,11 +132,12 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout4"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="180dp"
+        android:layout_height="140dp"
         android:background="@drawable/btn_main"
         android:elevation="10dp"
         android:orientation="vertical"
+        android:layout_marginRight="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
@@ -143,7 +152,7 @@
             android:layout_height="60dp"
             android:layout_centerInParent="true"
             android:paddingBottom="16dp"
-            android:src="@drawable/iconfinder_School" />
+            android:src="@drawable/iconfinder_crew" />
 
         <TextView
             android:id="@+id/textView3"
@@ -170,26 +179,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView_journal"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager2_journal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="240dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_margin="16dp"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_main"
-        app:layout_constraintHorizontal_bias="0.458"
-        app:layout_constraintStart_toStartOf="@+id/guideline_main"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_btn_bot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="361dp" />
+        app:layout_constraintGuide_begin="455dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_btn_top"
