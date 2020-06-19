@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val intent : Intent = Intent(this, LoadingActivity::class.java)
         setContentView(R.layout.activity_main)
-        viewPager = findViewById(R.id.imageView_journal) as ViewPager
+        viewPager = findViewById(R.id.viewPager_journal) as ViewPager
         imagePager = ImagePager(this)
         viewPager.adapter = imagePager
         //YouTubePlayerView_major.play("UTx1igNpTpk")

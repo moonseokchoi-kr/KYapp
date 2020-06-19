@@ -5,6 +5,7 @@ import android.content.Intent
 import android.media.Image
 import android.net.Uri
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,13 +23,12 @@ import kotlinx.android.synthetic.main.activity_major.*
 import kotlinx.android.synthetic.main.activity_pdfview.*
 
 
-class ImagePager constructor(context: Context): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ImagePager constructor(var context: Context): PagerAdapter() {
     private val imgList = intArrayOf(R.drawable.izone_main, R.drawable.izone_member, R.drawable.gfriend_main)
-    lateinit var inflater : LayoutInflater
-    var context:Context = context
+    private lateinit var inflater : LayoutInflater
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
-        return view == (`object`as ImageView)
+        return view == `object`
     }
 
     override fun getCount(): Int {
@@ -37,8 +37,8 @@ class ImagePager constructor(context: Context): RecyclerView.Adapter<RecyclerVie
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        var view : View = inflater.inflate(R.layout.activity_main, container, false)
-        var imageView : ImageView = view.findViewById(R.id.imageView_journal)
+        var view : View = inflater.inflate(R.layout.image_slider, container, false)
+        var imageView : ImageView = view.findViewById(R.id.imageView_slider)
         imageView.setImageResource(imgList[position])
         container.addView(view)
 
