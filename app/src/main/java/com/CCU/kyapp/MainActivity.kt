@@ -2,6 +2,8 @@ package com.CCU.kyapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 
@@ -11,14 +13,20 @@ class MainActivity : AppCompatActivity() {
     //var url = ""
     //private val mAuth = FirebaseAuth.getInstance()
     //private val user : FirebaseUser? = mAuth.currentUser
-    lateinit var imagePager:ImagePager
-    lateinit var viewPager:ViewPager
+    private lateinit var imagePager:ImagePager
+    private lateinit var viewPager:ViewPager
 
+    class activeClickListener : View.OnClickListener {
+        override fun onClick(v: View?) {
+
+        }
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val intent : Intent = Intent(this, LoadingActivity::class.java)
         setContentView(R.layout.activity_main)
-        viewPager = findViewById(R.id.viewPager_journal) as ViewPager
+        viewPager = findViewById<ViewPager>(R.id.viewPager_journal)
         imagePager = ImagePager(this)
         viewPager.adapter = imagePager
         //YouTubePlayerView_major.play("UTx1igNpTpk")

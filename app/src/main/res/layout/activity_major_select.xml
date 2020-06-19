@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/mainBg"
+    tools:ignore="MissingDefaultResource">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/topBg"
+        android:id="@+id/Toolbar_select"
+       >
+    </androidx.appcompat.widget.Toolbar>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TableRow>
+            <RelativeLayout
+                android:id="@+id/relativeLayout_community"
+                android:layout_width="180dp"
+                android:layout_height="140dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginRight="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/school_image"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_crew" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/school_image"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="16px"
+                    android:text="커뮤니티" />
+
+            </RelativeLayout>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
