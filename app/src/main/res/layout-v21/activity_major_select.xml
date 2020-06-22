@@ -3,12 +3,365 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/mainBg"
     tools:ignore="MissingDefaultResource">
 
-    <Toolbar
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/topBg"
+        android:id="@+id/Toolbar_select"
+       >
+    </androidx.appcompat.widget.Toolbar>
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="PRIME 창의융합대학 소속학과"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:textColor="#000000"
         />
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="12dp"
+        >
+        <TableRow
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            >
+            <RelativeLayout
+                android:id="@+id/relativeLayout_software"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_software"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_software" />
+
+                <TextView
+                    android:id="@+id/textView_school"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_software"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1dp"
+                    android:textSize="12sp"
+                    android:text="기업소프트웨어" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeLayout_clinical"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_clinical"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_clinical" />
+
+                <TextView
+                    android:id="@+id/textView_clinical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_clinical"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1dp"
+                    android:textSize="12sp"
+                    android:text="임상의학학과" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeLayout_extinguish"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_extinguish"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_extinguish" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_extinguish"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1dp"
+                    android:textSize="12sp"
+                    android:text="재난안전소방학과" />
+
+            </RelativeLayout>
+        </TableRow>
+        <TableRow
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            >
+            <RelativeLayout
+                android:id="@+id/relativeLayout_security"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginRight="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_security"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_security" />
+
+                <TextView
+                    android:id="@+id/textView_security"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_security"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1dp"
+                    android:textSize="12sp"
+                    android:text="사이버보안공학과" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeLayout_machine"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginRight="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_machine"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/iconfinder_machine" />
+
+                <TextView
+                    android:id="@+id/textView_machine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_machine"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1dp"
+                    android:textSize="12sp"
+                    android:text="융합기계공학과"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeLayout_beauty"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginRight="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_beauty"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_beauty" />
+
+                <TextView
+                    android:id="@+id/textView_beauty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_beauty"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1dp"
+                    android:textSize="10sp"
+                    android:text="글로벌의료뷰티학과" />
+
+            </RelativeLayout>
+        </TableRow>
+        <TableRow
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            >
+            <RelativeLayout
+                android:id="@+id/relativeLayout_it"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_it"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_code" />
+
+                <TextView
+                    android:id="@+id/textView_it"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_it"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1dp"
+                    android:textSize="12sp"
+                    android:text="융합IT학과" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeLayout_bio"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_bio"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_bio" />
+
+                <TextView
+                    android:id="@+id/textView_bio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_bio"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1px"
+                    android:textSize="12sp"
+                    android:text="의약바이오학과" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/relativeLayout_gfs"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_gfs"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="12dp"
+                    android:src="@drawable/iconfinder_globe" />
+
+                <TextView
+                    android:id="@+id/textView_gfs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_gfs"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1dp"
+                    android:textSize="11sp"
+                    android:text="글로벌프론티어학과" />
+
+            </RelativeLayout>
+        </TableRow>
+        <TableRow
+            android:gravity="center"
+            android:layout_marginBottom="16dp"
+            >
+            <RelativeLayout
+                android:id="@+id/relativeLayout_design"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:background="@drawable/btn_main"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:layout_marginEnd="8dp"
+                >
+
+                <ImageView
+                    android:id="@+id/imageView_design"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_design" />
+
+                <TextView
+                    android:id="@+id/textView_design"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/imageView_design"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="1dp"
+                    android:textSize="12sp"
+                    android:text="융합디자인학과" />
+
+            </RelativeLayout>
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>

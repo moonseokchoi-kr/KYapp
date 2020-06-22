@@ -1,26 +1,11 @@
 package com.CCU.kyapp
 
 import android.content.Context
-import android.content.Intent
-import android.media.Image
-import android.net.Uri
-import android.os.Bundle
-import android.text.Layout
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.activity_major.*
-import kotlinx.android.synthetic.main.activity_pdfview.*
 
 
 class ImagePager constructor(var context: Context): PagerAdapter() {
