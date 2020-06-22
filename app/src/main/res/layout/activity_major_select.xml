@@ -49,7 +49,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_software" />
 
                 <TextView
                     android:id="@+id/textView_school"
@@ -80,7 +80,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_clinical" />
 
                 <TextView
                     android:id="@+id/textView_clinical"
@@ -111,7 +111,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_extinguish" />
 
                 <TextView
                     android:id="@+id/textView3"
@@ -147,7 +147,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_security" />
 
                 <TextView
                     android:id="@+id/textView_security"
@@ -178,7 +178,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_machine" />
 
                 <TextView
                     android:id="@+id/textView_machine"
@@ -190,7 +190,7 @@
                     android:background="@drawable/btn_main"
                     android:padding="16px"
                     android:textSize="12dp"
-                    android:text="임상의학학과" />
+                    android:text="융합기계공학과"/>
 
             </RelativeLayout>
             <RelativeLayout
@@ -209,7 +209,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_beauty" />
 
                 <TextView
                     android:id="@+id/textView_beauty"
@@ -245,7 +245,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_code" />
 
                 <TextView
                     android:id="@+id/textView_it"
@@ -276,7 +276,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_bio" />
 
                 <TextView
                     android:id="@+id/textView_bio"
@@ -307,7 +307,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_globe" />
 
                 <TextView
                     android:id="@+id/textView_gfs"
@@ -343,7 +343,7 @@
                     android:layout_height="60dp"
                     android:layout_centerInParent="true"
                     android:paddingBottom="16dp"
-                    android:src="@drawable/iconfinder_crew" />
+                    android:src="@drawable/iconfinder_design" />
 
                 <TextView
                     android:id="@+id/textView_design"
