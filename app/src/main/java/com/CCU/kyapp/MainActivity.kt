@@ -3,9 +3,11 @@ package com.CCU.kyapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.RelativeLayout
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,11 +26,14 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val intent : Intent = Intent(this, LoadingActivity::class.java)
+        val intent : Intent = Intent(this, MajorSelectorActivity::class.java)
         setContentView(R.layout.activity_main)
         viewPager = findViewById<ViewPager>(R.id.viewPager_journal)
         imagePager = ImagePager(this)
         viewPager.adapter = imagePager
+        relativeLayout_major.setOnClickListener{
+            startActivity(intent)
+        }
         //YouTubePlayerView_major.play("UTx1igNpTpk")
         //RelativeLayout_pdf.setOnClickListener {intent.putExtra("url" , url)
             //startActivity(intent)}

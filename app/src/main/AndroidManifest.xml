@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".MajorActivity">
         </activity>
-        <activity android:name=".PdfViewer">
+        <activity android:name=".MajorSelectorActivity">
         </activity>
         <activity android:name=".LoadingActivity">
         </activity>
