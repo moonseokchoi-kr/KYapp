@@ -11,10 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    //private val mStorageRef: StorageReference? = FirebaseStorage.getInstance().reference;
-    //var url = ""
-    //private val mAuth = FirebaseAuth.getInstance()
-    //private val user : FirebaseUser? = mAuth.currentUser
+
     private lateinit var imagePager:ImagePager
     private lateinit var viewPager:ViewPager
 
@@ -26,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val intent : Intent = Intent(this, MajorSelectorActivity::class.java)
+        var intent : Intent = Intent(this, MajorSelectorActivity::class.java)
         setContentView(R.layout.activity_main)
         viewPager = findViewById<ViewPager>(R.id.viewPager_journal)
         imagePager = ImagePager(this)
@@ -34,31 +31,12 @@ class MainActivity : AppCompatActivity() {
         relativeLayout_major.setOnClickListener{
             startActivity(intent)
         }
-        //YouTubePlayerView_major.play("UTx1igNpTpk")
-        //RelativeLayout_pdf.setOnClickListener {intent.putExtra("url" , url)
-            //startActivity(intent)}
-    }
-    /*
-    public override fun onStart() {
-        super.onStart()
-        if(user != null){
-           mStorageRef?.child("promote_pdf/prime_promote.pdf")?.downloadUrl
-               ?.addOnSuccessListener { url = it.toString()
-                   Log.d("PdfUri", "Uri : $url")
-               }
-               ?.addOnFailureListener{ Log.e("Error" , "URLDownload Failure:Firebase") }
-        }else{
-            signInAnonymously();
+        relativeLayout_school.setOnClickListener {
+            intent  = Intent(this, SchoolActivity::class.java)
+            startActivity(intent)
         }
+
+
     }
-    private fun signInAnonymously() {
-        mAuth.signInAnonymously()
-            .addOnSuccessListener(this) {
-                url =  mStorageRef?.child("promote_pdf/prime_promote.pdf")?.downloadUrl.toString()
-            }
-            .addOnFailureListener(
-                this
-            ) { exception -> Log.e("Login", "signInAnonymously:FAILURE", exception) }
-    }
-    */
+
 }
