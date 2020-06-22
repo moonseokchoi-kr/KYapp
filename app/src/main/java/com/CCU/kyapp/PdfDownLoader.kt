@@ -58,7 +58,7 @@ class PdfDownLoader constructor(private val url: String, private val progress: P
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
         progress.progress=100
-        val intent = Intent(context,PdfViewer::class.java)
+        val intent = Intent(context,PdfOpener::class.java)
         intent.putExtra("filepath",filepath)
         context.startActivity(intent)
     }

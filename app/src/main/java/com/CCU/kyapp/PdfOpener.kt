@@ -1,8 +1,12 @@
 package com.CCU.kyapp
 
 import android.content.Context
+import android.content.Intent
+import android.content.pm.ResolveInfo
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.github.barteksc.pdfviewer.listener.OnErrorListener
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
@@ -20,13 +24,15 @@ import java.lang.Exception
 class PdfOpener constructor(private var context: AppCompatActivity) {
     private val mStorageRef: StorageReference? = FirebaseStorage.getInstance().reference;
     private val mAuth = FirebaseAuth.getInstance()
-    private var url =""
+    lateinit var uri : Uri
     private val user : FirebaseUser? = mAuth.currentUser
+
+
     fun authFirebase(){
         if(user != null){
             mStorageRef?.child("promote_pdf/prime_promote.pdf")?.downloadUrl
-                ?.addOnSuccessListener { url = it.toString()
-                    Log.d("PdfUri", "Uri : $url")
+                ?.addOnSuccessListener { uri = it
+                    Log.d("downLoad Uri", "uri :$uri")
                 }
                 ?.addOnFailureListener{ Log.e("Error" , "URLDownload Failure:Firebase") }
         }else{
@@ -36,7 +42,7 @@ class PdfOpener constructor(private var context: AppCompatActivity) {
     private fun signInAnonymously() {
         mAuth.signInAnonymously()
             .addOnSuccessListener(context) {
-                url =  mStorageRef?.child("promote_pdf/prime_promote.pdf")?.downloadUrl.toString()
+                Toast.makeText(context,"Login Successful!!", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener(
                 context
@@ -49,5 +55,15 @@ class PdfOpener constructor(private var context: AppCompatActivity) {
             Log.e("Logout", "Error is Occur :" + e.printStackTrace())
         }
 
+    }
+
+    fun openPdf(uri : Uri, intent:Intent){
+        intent.setDataAndType(uri,"application/pdf")
+        val activities : List<ResolveInfo> = context.packageManager.queryIntentActivities(intent, 0)
+        try{
+            context.startActivity(intent)
+        }catch(e:Exception){
+            Toast.makeText(context, "PDF 파일을 보기 위한 뷰어앱이 없습니다", Toast.LENGTH_SHORT).show()
+        }
     }
 }
