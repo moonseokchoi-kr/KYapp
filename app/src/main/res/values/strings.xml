@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">KY App</string>
+    <string name="clinical">임상의약학과</string>
     <string name="fusionit_intro_text">건양대는 교육부의 2단계 산학협력 선도대학(LNC) 사업, 2014 학부교육 선도대학(ACE) 육성사업, 대학 특성화(CK) 사업에 이어 2016년에 선정된 프라임(PRIME) 사업을 통하여 사회에서 수요가 있는 학과를 신설 및 증원하되 각 기업들이 요청한 인재수준에 맞는 커리큘럼을 완수해 취업을 예약하는 예약학과 시스템을 만들고, 이들 학과들은 창의융합대학을 확대하여 만든 PRIME창의융합대학에 속하여 1년 10학기제, 프로젝트식 수업을 진행하게 됩니다.</string>
 </resources>

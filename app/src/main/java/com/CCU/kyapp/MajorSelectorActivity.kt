@@ -1,5 +1,6 @@
 package com.CCU.kyapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
@@ -11,10 +12,10 @@ import kotlinx.android.synthetic.main.activity_major_select.*
 
 class MajorSelectorActivity : AppCompatActivity() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_major_select)
+        var intent : Intent = Intent(this, MajorActivity::class.java)
         var tb = Toolbar_select
         setSupportActionBar(tb)
         val ab : ActionBar? = supportActionBar
@@ -22,6 +23,9 @@ class MajorSelectorActivity : AppCompatActivity() {
             ab.title = ""
         }
         ab?.setDisplayHomeAsUpEnabled(true)
+        relativeLayout_clinical.setOnClickListener { intent.putExtra("major","임상의약학과")
+            startActivity(intent)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

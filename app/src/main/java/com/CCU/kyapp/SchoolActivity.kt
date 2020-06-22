@@ -4,15 +4,22 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_major.*
+import kotlinx.android.synthetic.main.activity_school.*
+
 
 class SchoolActivity : AppCompatActivity() {
-    private val pdf : PdfOpener = PdfOpener(this)
+    private val pdf : PdfOpener = PdfOpener(this)gia
     private var pdfChooser : Intent = Intent(Intent.ACTION_VIEW)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_school)
+        var tb = Toolbar_school
+        setSupportActionBar(tb)
+        var ab = supportActionBar
+        ab?.setDisplayHomeAsUpEnabled(true)
+        ab?.title=""
         YouTubePlayerView_major.play("UTx1igNpTpk")
         RelativeLayout_pdf.setOnClickListener {
             pdf.openPdf(pdf.uri,pdfChooser)

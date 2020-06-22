@@ -8,8 +8,8 @@ import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
 
 
-class ImagePager constructor(var context: Context): PagerAdapter() {
-    private val imgList = intArrayOf(R.drawable.izone_main, R.drawable.izone_member, R.drawable.gfriend_main)
+class ImagePager constructor(var context: Context, var imageList: IntArray): PagerAdapter() {
+
     private lateinit var inflater : LayoutInflater
 
     override fun isViewFromObject(view: View, `object`: Any): Boolean {
@@ -17,14 +17,14 @@ class ImagePager constructor(var context: Context): PagerAdapter() {
     }
 
     override fun getCount(): Int {
-        return imgList.size
+        return imageList.size
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var view : View = inflater.inflate(R.layout.image_slider, container, false)
         var imageView : ImageView = view.findViewById(R.id.imageView_slider)
-        imageView.setImageResource(imgList[position])
+        imageView.setImageResource(imageList[position])
         container.addView(view)
 
         return view

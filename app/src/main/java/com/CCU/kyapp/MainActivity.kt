@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var imagePager:ImagePager
     private lateinit var viewPager:ViewPager
-
+    //test image
+    private val imgList = intArrayOf(R.drawable.izone_main, R.drawable.izone_member, R.drawable.gfriend_main)
     class activeClickListener : View.OnClickListener {
         override fun onClick(v: View?) {
 
@@ -23,12 +24,14 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        var intent : Intent = Intent(this, MajorSelectorActivity::class.java)
+        lateinit var intent : Intent
         setContentView(R.layout.activity_main)
         viewPager = findViewById<ViewPager>(R.id.viewPager_journal)
-        imagePager = ImagePager(this)
+
+        imagePager = ImagePager(this, imgList)
         viewPager.adapter = imagePager
         relativeLayout_major.setOnClickListener{
+            intent = Intent(this, MajorSelectorActivity::class.java)
             startActivity(intent)
         }
         relativeLayout_school.setOnClickListener {
