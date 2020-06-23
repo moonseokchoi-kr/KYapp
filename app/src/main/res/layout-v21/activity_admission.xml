@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/mainBg"
+    android:background="#FFFFFFF"
     tools:ignore="MissingDefaultResource">
 
     <androidx.appcompat.widget.Toolbar
@@ -27,9 +27,116 @@
     </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout_susi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/btn_admisson"
         >
-
+        <TextView
+            android:id="@+id/textView_susi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="수시모집"
+            android:textSize="24sp"
+            android:layout_centerInParent="true"
+            />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/next_arrow"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            />
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout_jungsi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/btn_admisson"
+        >
+        <TextView
+            android:id="@+id/textView_jungsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="정시모집"
+            android:textSize="24sp"
+            android:layout_centerInParent="true"
+            />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/next_arrow"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout_pean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/btn_admisson"
+        >
+        <TextView
+            android:id="@+id/textView_pean"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="편입학모집"
+            android:textSize="24sp"
+            android:layout_centerInParent="true"
+            />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/next_arrow"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relativeLayout_foreigner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:background="@drawable/btn_admisson"
+        >
+        <TextView
+            android:id="@+id/textView_foreigner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="재외국민모집"
+            android:textSize="24sp"
+            android:layout_centerInParent="true"
+            />
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/next_arrow"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
 </LinearLayout>
