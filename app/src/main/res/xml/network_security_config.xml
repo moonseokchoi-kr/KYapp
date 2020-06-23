@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<network-security-config>
+
+    <domain-config cleartextTrafficPermitted="true">
+
+        <domain includeSubdomains="true">http://ipsi.konyang.ac.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000154242&amp;fileSn=0</domain>
+
+    </domain-config>
+
+</network-security-config>
