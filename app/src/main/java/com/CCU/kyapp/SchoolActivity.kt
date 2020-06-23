@@ -10,14 +10,14 @@ import kotlinx.android.synthetic.main.activity_school.*
 
 
 class SchoolActivity : AppCompatActivity() {
-    private val pdf : PdfOpener = PdfOpener(this)gia
+    private val pdf : PdfOpener = PdfOpener(this)
     private var pdfChooser : Intent = Intent(Intent.ACTION_VIEW)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_school)
-        var tb = Toolbar_school
+        val tb = Toolbar_school
         setSupportActionBar(tb)
-        var ab = supportActionBar
+        val ab = supportActionBar
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.title=""
         YouTubePlayerView_major.play("UTx1igNpTpk")
