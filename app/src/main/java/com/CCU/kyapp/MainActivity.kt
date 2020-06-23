@@ -16,12 +16,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewPager:ViewPager
     //test image
     private val imgList = intArrayOf(R.drawable.izone_main, R.drawable.izone_member, R.drawable.gfriend_main)
-    class activeClickListener : View.OnClickListener {
-        override fun onClick(v: View?) {
 
-        }
-
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lateinit var intent : Intent
