@@ -1,6 +1,8 @@
 package com.CCU.kyapp
 
 import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_major.*
@@ -16,13 +18,29 @@ class MajorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_major)
         imagePager = ImagePager(this,imgList)
         viewPager = viewPager_major
+        var intent = intent
         viewPager.adapter = imagePager
+        Log.d("major", intent.getStringExtra("major").toString())
+        textView_toolbarText.text = intent.getStringExtra("major")
+        textView_majorTitle.text = intent.getStringExtra("major")
         var tb = Toolbar_major
         setSupportActionBar(tb)
         var ab = supportActionBar
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.title=""
-        textView_majorTitle.text = intent.getStringExtra("major")
         YouTubePlayerView_major.play("vtx3-q8IBMs")
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("BackButton", "Item Id " + item.itemId)
+        Log.d("Home", "id :"+R.id.home)
+        when(item.itemId){
+            android.R.id.home -> {finish()
+                return true}
+            else ->{
+                Log.e("BackButton","Cant find ID")
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
