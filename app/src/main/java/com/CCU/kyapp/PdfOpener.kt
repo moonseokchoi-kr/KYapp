@@ -21,16 +21,16 @@ import kotlinx.android.synthetic.main.activity_pdfview.*
 import java.io.File
 import java.lang.Exception
 
-class PdfOpener constructor(private var context: AppCompatActivity) {
+class PdfOpener constructor(private var context: AppCompatActivity, var path:String) {
     private val mStorageRef: StorageReference? = FirebaseStorage.getInstance().reference;
     private val mAuth = FirebaseAuth.getInstance()
-    lateinit var uri : Uri
+    private lateinit var uri : Uri
     private val user : FirebaseUser? = mAuth.currentUser
 
 
     fun authFirebase(){
         if(user != null){
-            mStorageRef?.child("promote_pdf/prime_promote.pdf")?.downloadUrl
+            mStorageRef?.child(path)?.downloadUrl
                 ?.addOnSuccessListener { uri = it
                     Log.d("downLoad Uri", "uri :$uri")
                 }
@@ -43,6 +43,10 @@ class PdfOpener constructor(private var context: AppCompatActivity) {
         mAuth.signInAnonymously()
             .addOnSuccessListener(context) {
                 Toast.makeText(context,"Login Successful!!", Toast.LENGTH_SHORT).show()
+                mStorageRef?.child(path)?.downloadUrl?.addOnSuccessListener { uri=it
+                    Log.d("downLoad Uri", "uri :$uri")}?.addOnFailureListener{
+                    Log.e("Error" , "URLDownload Failure:Firebase"+ it.printStackTrace())
+                }
             }
             .addOnFailureListener(
                 context
@@ -57,7 +61,7 @@ class PdfOpener constructor(private var context: AppCompatActivity) {
 
     }
 
-    fun openPdf(uri : Uri, intent:Intent){
+    fun openPdf(intent:Intent){
         intent.setDataAndType(uri,"application/pdf")
         val activities : List<ResolveInfo> = context.packageManager.queryIntentActivities(intent, 0)
         try{

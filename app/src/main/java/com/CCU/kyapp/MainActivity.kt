@@ -33,6 +33,10 @@ class MainActivity : AppCompatActivity() {
             intent  = Intent(this, SchoolActivity::class.java)
             startActivity(intent)
         }
+        relativeLayout_admission.setOnClickListener{
+            intent = Intent(this, AdmissionActivity::class.java)
+            startActivity(intent)
+        }
 
 
     }

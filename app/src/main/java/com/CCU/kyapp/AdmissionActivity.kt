@@ -1,19 +1,88 @@
 package com.CCU.kyapp
 
+import android.animation.LayoutTransition
+import android.app.ActionBar
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
+import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_admission.*
+import kotlinx.android.synthetic.main.activity_school.*
 
 class AdmissionActivity : AppCompatActivity() {
-    class activeClickListener constructor(var layout: LinearLayout) : View.OnClickListener {
-        override fun onClick(v: View?) {
-            
+    private var pdfOpener :PdfOpener = PdfOpener(this, "admission_pdf/subject_info.pdf")
+    private var isOpen : Boolean = false
+    private var isOpenImg : Boolean = false
+    var transition : LayoutTransition = LayoutTransition()
+    override fun onCreate(savedInstanceState: Bundle?){
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_admission)
+        var admissionGroup : ViewGroup = linearLayout_admission
+        val tb = Toolbar_admission
+        setSupportActionBar(tb)
+        val ab = supportActionBar
+        ab?.setDisplayHomeAsUpEnabled(true)
+        ab?.title=""
+        relativeLayout_susi.setOnClickListener {
+            transition.addChild(admissionGroup, linearLayout_susi)
+            transition.addChild(admissionGroup, relativeLayout_subject)
+            transition.addChild(admissionGroup, relativeLayout_all)
+            if(!isOpen) {
+                linearLayout_susi.visibility = View.VISIBLE
+                isOpen = true
+                enableLayoutTransitions()
+            }
+            else{
+                enableLayoutTransitions()
+                linearLayout_susi.visibility=View.GONE
+                linearLayout_subject.visibility=View.GONE
+                isOpen = false
+                isOpenImg = false
+            }
+
+        }
+        relativeLayout_subject.setOnClickListener{
+            if(!isOpenImg){
+                linearLayout_subject.visibility=View.VISIBLE
+                isOpenImg = true
+            }
+            else{
+                linearLayout_subject.visibility=View.GONE
+                isOpenImg = false
+            }
+        }
+        relativeLayout_subject_info.setOnClickListener{
+            var intent:Intent = Intent(Intent.ACTION_VIEW)
+            pdfOpener.openPdf(intent)
         }
 
     }
-    override fun onCreate(savedInstanceState: Bundle?){
-        super.onCreate(savedInstanceState)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("BackButton", "Item Id " + item.itemId)
+        Log.d("Home", "id :"+R.id.home)
+        when(item.itemId){
+            android.R.id.home -> {finish()
+                pdfOpener.deleteUser()
+                return true}
+            else ->{
+                Log.e("BackButton","Cant find ID")
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+    override fun onStart() {
+        super.onStart()
+        pdfOpener.authFirebase()
+    }
+    private fun enableLayoutTransitions(){
+        transition.enableTransitionType(LayoutTransition.APPEARING)
+        transition.enableTransitionType(LayoutTransition.DISAPPEARING)
+        transition.enableTransitionType(LayoutTransition.CHANGE_APPEARING)
+        transition.enableTransitionType(LayoutTransition.CHANGE_DISAPPEARING)
     }
 }

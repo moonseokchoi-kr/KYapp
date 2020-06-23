@@ -3,12 +3,10 @@ package com.CCU.kyapp
 import android.view.View
 import android.view.animation.TranslateAnimation
 
-class BottomTranslateAnimation constructor(var fromY : Float, var toY: Float){
+class BottomTranslateAnimation constructor(var fromY : Float, var toY: Int) : TranslateAnimation(0F,0F,fromY,toY as Float){
 
-    var anim : TranslateAnimation = TranslateAnimation(0F, 0F,fromY,toY)
-
-    fun setDuration(duration: Long){
-        anim.duration = duration
+    override fun setDuration(duration: Long){
+        super.setDuration(duration)
     }
 
 }

@@ -28,6 +28,8 @@ class MajorSelectorActivity : AppCompatActivity() {
         }
     }
 
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
         Log.d("Home", "id :"+R.id.home)

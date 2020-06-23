@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_school.*
 
 
 class SchoolActivity : AppCompatActivity() {
-    private val pdf : PdfOpener = PdfOpener(this)
+    private val pdf : PdfOpener = PdfOpener(this, "promote_pdf/prime_promote.pdf")
     private var pdfChooser : Intent = Intent(Intent.ACTION_VIEW)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class SchoolActivity : AppCompatActivity() {
         ab?.title=""
         YouTubePlayerView_major.play("UTx1igNpTpk")
         RelativeLayout_pdf.setOnClickListener {
-            pdf.openPdf(pdf.uri,pdfChooser)
+            pdf.openPdf(pdfChooser)
         startActivity(pdfChooser)}
     }
 
