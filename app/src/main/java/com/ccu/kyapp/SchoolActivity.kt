@@ -1,16 +1,16 @@
-package com.CCU.kyapp
+package com.ccu.kyapp
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_school.*
 
 
 class SchoolActivity : AppCompatActivity() {
-    private val pdf : PdfOpener = PdfOpener(this, "promote_pdf/prime_promote.pdf")
+    private val pdf : PdfOpener =
+        PdfOpener(this, "promote_pdf/prime_promote.pdf")
     private var pdfChooser : Intent = Intent(Intent.ACTION_VIEW)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,7 @@ class SchoolActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
-        Log.d("Home", "id :"+R.id.home)
+        Log.d("Home", "id :"+ R.id.home)
         when(item.itemId){
             android.R.id.home -> {finish()
                 pdf.deleteUser()

@@ -1,4 +1,4 @@
-package com.CCU.kyapp
+package com.ccu.kyapp.majorImage
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.viewpager.widget.PagerAdapter
+import com.ccu.kyapp.R
 
 
 class ImagePager constructor(var context: Context, var imageList: IntArray): PagerAdapter() {

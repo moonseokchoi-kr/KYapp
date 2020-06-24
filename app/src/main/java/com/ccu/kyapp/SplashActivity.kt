@@ -1,4 +1,4 @@
-package com.CCU.kyapp
+package com.ccu.kyapp
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         var hd : Handler = Handler()
-        hd.postDelayed(Runnable { var intent = Intent(this,MainActivity::class.java)
+        hd.postDelayed(Runnable { var intent = Intent(this,
+            MainActivity::class.java)
             startActivity(intent)
         this.finish()},3000)
     }

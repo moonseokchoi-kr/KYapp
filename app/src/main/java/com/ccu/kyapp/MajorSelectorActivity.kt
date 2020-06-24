@@ -1,11 +1,9 @@
-package com.CCU.kyapp
+package com.ccu.kyapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_major_select.*
@@ -32,7 +30,7 @@ class MajorSelectorActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
-        Log.d("Home", "id :"+R.id.home)
+        Log.d("Home", "id :"+ R.id.home)
         when(item.itemId){
             android.R.id.home -> {finish()
                 return true}

@@ -1,4 +1,4 @@
-package com.CCU.kyapp
+package com.ccu.kyapp
 
 import android.os.Bundle
 import android.view.View
@@ -11,7 +11,12 @@ class LoadingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
         ProgressBar_pdf.visibility= View.VISIBLE
-        val downLoader : PdfDownLoader = PdfDownLoader(intent.getStringExtra("url"),ProgressBar_pdf,this)
+        val downLoader : PdfDownLoader =
+            PdfDownLoader(
+                intent.getStringExtra("url"),
+                ProgressBar_pdf,
+                this
+            )
         downLoader.execute()
     }
 }

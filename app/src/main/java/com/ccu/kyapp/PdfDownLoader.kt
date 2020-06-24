@@ -1,13 +1,10 @@
-package com.CCU.kyapp
+package com.ccu.kyapp
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.AsyncTask
 import android.util.Log
 import android.widget.ProgressBar
-import com.github.barteksc.pdfviewer.util.FileUtils
-import com.google.firebase.storage.FileDownloadTask
 import java.io.*
 import java.lang.Exception
 import java.net.URL
@@ -58,7 +55,7 @@ class PdfDownLoader constructor(private val url: String, private val progress: P
     override fun onPostExecute(result: String?) {
         super.onPostExecute(result)
         progress.progress=100
-        val intent = Intent(context,PdfOpener::class.java)
+        val intent = Intent(context, PdfOpener::class.java)
         intent.putExtra("filepath",filepath)
         context.startActivity(intent)
     }

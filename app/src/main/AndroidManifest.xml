@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.CCU.kyapp">
+    package="com.ccu.kyapp">
 
     <application
         android:allowBackup="true"
@@ -11,22 +11,22 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         >
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.ccu.kyapp.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.ccu.kyapp.MainActivity">
         </activity>
-        <activity android:name=".MajorActivity">
+        <activity android:name="com.ccu.kyapp.MajorActivity">
         </activity>
-        <activity android:name=".MajorSelectorActivity">
+        <activity android:name="com.ccu.kyapp.MajorSelectorActivity">
         </activity>
-        <activity android:name=".SchoolActivity">
+        <activity android:name="com.ccu.kyapp.SchoolActivity">
         </activity>
-        <activity android:name=".AdmissionActivity">
+        <activity android:name="com.ccu.kyapp.AdmissionActivity">
         </activity>
     </application>
 

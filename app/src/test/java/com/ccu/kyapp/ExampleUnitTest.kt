@@ -1,4 +1,4 @@
-package com.CCU.kyapp
+package com.ccu.kyapp
 
 import org.junit.Test
 

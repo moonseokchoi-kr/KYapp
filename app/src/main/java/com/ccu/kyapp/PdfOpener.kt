@@ -1,24 +1,15 @@
-package com.CCU.kyapp
+package com.ccu.kyapp
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ResolveInfo
 import android.net.Uri
-import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.github.barteksc.pdfviewer.listener.OnErrorListener
-import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener
-import com.github.barteksc.pdfviewer.listener.OnPageChangeListener
-import com.github.barteksc.pdfviewer.scroll.DefaultScrollHandle
-import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.android.synthetic.main.activity_pdfview.*
-import java.io.File
 import java.lang.Exception
 
 class PdfOpener constructor(private var context: AppCompatActivity, var path:String) {

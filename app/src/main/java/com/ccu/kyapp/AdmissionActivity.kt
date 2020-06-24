@@ -1,21 +1,18 @@
-package com.CCU.kyapp
+package com.ccu.kyapp
 
 import android.animation.LayoutTransition
-import android.app.ActionBar
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_admission.*
-import kotlinx.android.synthetic.main.activity_school.*
 
 class AdmissionActivity : AppCompatActivity() {
-    private var pdfOpener :PdfOpener = PdfOpener(this, "admission_pdf/subject_info.pdf")
+    private var pdfOpener : PdfOpener =
+        PdfOpener(this, "admission_pdf/subject_info.pdf")
     private var isOpen : Boolean = false
     private var isOpenImg : Boolean = false
     var transition : LayoutTransition = LayoutTransition()
@@ -64,7 +61,7 @@ class AdmissionActivity : AppCompatActivity() {
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
-        Log.d("Home", "id :"+R.id.home)
+        Log.d("Home", "id :"+ R.id.home)
         when(item.itemId){
             android.R.id.home -> {finish()
                 pdfOpener.deleteUser()
