@@ -6,6 +6,7 @@ import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.ccu.kyapp.auth.FireBaseAuth
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.storage.FirebaseStorage
@@ -13,47 +14,11 @@ import com.google.firebase.storage.StorageReference
 import java.lang.Exception
 
 class PdfOpener constructor(private var context: AppCompatActivity, var path:String) {
-    private val mStorageRef: StorageReference? = FirebaseStorage.getInstance().reference;
-    private val mAuth = FirebaseAuth.getInstance()
-    private lateinit var uri : Uri
-    private val user : FirebaseUser? = mAuth.currentUser
 
-
-    fun authFirebase(){
-        if(user != null){
-            mStorageRef?.child(path)?.downloadUrl
-                ?.addOnSuccessListener { uri = it
-                    Log.d("downLoad Uri", "uri :$uri")
-                }
-                ?.addOnFailureListener{ Log.e("Error" , "URLDownload Failure:Firebase") }
-        }else{
-            signInAnonymously();
-        }
-    }
-    private fun signInAnonymously() {
-        mAuth.signInAnonymously()
-            .addOnSuccessListener(context) {
-                Toast.makeText(context,"Login Successful!!", Toast.LENGTH_SHORT).show()
-                mStorageRef?.child(path)?.downloadUrl?.addOnSuccessListener { uri=it
-                    Log.d("downLoad Uri", "uri :$uri")}?.addOnFailureListener{
-                    Log.e("Error" , "URLDownload Failure:Firebase"+ it.printStackTrace())
-                }
-            }
-            .addOnFailureListener(
-                context
-            ) { exception -> Log.e("Login", "signInAnonymously:FAILURE", exception) }
-    }
-    fun deleteUser(){
-        try{
-            user?.delete()
-        }catch (e : Exception){
-            Log.e("Logout", "Error is Occur :" + e.printStackTrace())
-        }
-
-    }
-
+    private val auth = FireBaseAuth(path,context)
     fun openPdf(intent:Intent){
-        intent.setDataAndType(uri,"application/pdf")
+        auth.authFirebase()
+        intent.setDataAndType(auth.uri,"application/pdf")
         val activities : List<ResolveInfo> = context.packageManager.queryIntentActivities(intent, 0)
         try{
             context.startActivity(intent)
