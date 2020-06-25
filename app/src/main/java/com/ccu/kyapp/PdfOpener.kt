@@ -16,6 +16,9 @@ import java.lang.Exception
 class PdfOpener constructor(private var context: AppCompatActivity, var path:String) {
 
     private val auth = FireBaseAuth(path,context)
+    fun getAuth (): FireBaseAuth{
+        return auth
+    }
     fun openPdf(intent:Intent){
         auth.authFirebase()
         intent.setDataAndType(auth.uri,"application/pdf")

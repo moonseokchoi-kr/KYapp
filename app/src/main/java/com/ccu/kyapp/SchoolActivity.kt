@@ -28,14 +28,14 @@ class SchoolActivity : AppCompatActivity() {
 
     override fun onStart(){
         super.onStart()
-        pdf.authFirebase()
+
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
         Log.d("Home", "id :"+ R.id.home)
         when(item.itemId){
             android.R.id.home -> {finish()
-                pdf.deleteUser()
+                pdf.getAuth().deleteUser()
                 return true}
             else ->{
                 Log.e("BackButton","Cant find ID")

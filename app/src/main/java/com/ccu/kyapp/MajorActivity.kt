@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+import com.ccu.kyapp.auth.FireBaseAuth
 import com.ccu.kyapp.majorImage.ImagePager
 import kotlinx.android.synthetic.main.activity_major.*
 
