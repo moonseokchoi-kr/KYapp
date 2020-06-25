@@ -8,11 +8,13 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import com.ccu.kyapp.auth.FireBaseAuth
 import kotlinx.android.synthetic.main.activity_admission.*
 
 class AdmissionActivity : AppCompatActivity() {
     private var pdfOpener : PdfOpener =
-        PdfOpener(this, "admission_pdf/subject_info.pdf")
+        PdfOpener(this)
+    private val auth : FireBaseAuth = FireBaseAuth("admission_pdf/subject_info.pdf", this)
     private var isOpen : Boolean = false
     private var isOpenImg : Boolean = false
     var transition : LayoutTransition = LayoutTransition()
@@ -55,7 +57,7 @@ class AdmissionActivity : AppCompatActivity() {
         }
         relativeLayout_subject_info.setOnClickListener{
             var intent:Intent = Intent(Intent.ACTION_VIEW)
-            pdfOpener.openPdf(intent)
+            pdfOpener.openPdf(intent,auth.uri)
         }
 
     }
@@ -64,7 +66,7 @@ class AdmissionActivity : AppCompatActivity() {
         Log.d("Home", "id :"+ R.id.home)
         when(item.itemId){
             android.R.id.home -> {finish()
-                pdfOpener.deleteUser()
+                auth.deleteUser()
                 return true}
             else ->{
                 Log.e("BackButton","Cant find ID")
@@ -74,7 +76,7 @@ class AdmissionActivity : AppCompatActivity() {
     }
     override fun onStart() {
         super.onStart()
-        pdfOpener.authFirebase()
+        auth.authFirebase()
     }
     private fun enableLayoutTransitions(){
         transition.enableTransitionType(LayoutTransition.APPEARING)

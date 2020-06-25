@@ -5,12 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.ccu.kyapp.auth.FireBaseAuth
 import kotlinx.android.synthetic.main.activity_school.*
 
 
 class SchoolActivity : AppCompatActivity() {
     private val pdf : PdfOpener =
-        PdfOpener(this, "promote_pdf/prime_promote.pdf")
+        PdfOpener(this)
+    private val auth : FireBaseAuth = FireBaseAuth( "promote_pdf/prime_promote.pdf", this)
     private var pdfChooser : Intent = Intent(Intent.ACTION_VIEW)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,20 +24,20 @@ class SchoolActivity : AppCompatActivity() {
         ab?.title=""
         YouTubePlayerView_major.play("UTx1igNpTpk")
         RelativeLayout_pdf.setOnClickListener {
-            pdf.openPdf(pdfChooser)
+            pdf.openPdf(pdfChooser,auth.uri)
         startActivity(pdfChooser)}
     }
 
     override fun onStart(){
         super.onStart()
-
+        auth.authFirebase()
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
         Log.d("Home", "id :"+ R.id.home)
         when(item.itemId){
             android.R.id.home -> {finish()
-                pdf.getAuth().deleteUser()
+                auth.deleteUser()
                 return true}
             else ->{
                 Log.e("BackButton","Cant find ID")

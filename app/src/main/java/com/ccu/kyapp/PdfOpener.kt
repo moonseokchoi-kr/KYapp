@@ -13,15 +13,12 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.lang.Exception
 
-class PdfOpener constructor(private var context: AppCompatActivity, var path:String) {
+class PdfOpener constructor(private var context: AppCompatActivity) {
 
-    private val auth = FireBaseAuth(path,context)
-    fun getAuth (): FireBaseAuth{
-        return auth
-    }
-    fun openPdf(intent:Intent){
-        auth.authFirebase()
-        intent.setDataAndType(auth.uri,"application/pdf")
+
+    fun openPdf(intent:Intent, uri: Uri){
+
+        intent.setDataAndType(uri,"application/pdf")
         val activities : List<ResolveInfo> = context.packageManager.queryIntentActivities(intent, 0)
         try{
             context.startActivity(intent)
