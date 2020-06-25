@@ -13,7 +13,7 @@ class MajorSelectorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_major_select)
-        var intent : Intent = Intent(this, MajorActivity::class.java)
+        var intent : Intent = Intent(this, LoadingActivity::class.java)
         var tb = Toolbar_select
         setSupportActionBar(tb)
         val ab : ActionBar? = supportActionBar
@@ -21,7 +21,19 @@ class MajorSelectorActivity : AppCompatActivity() {
             ab.title = ""
         }
         ab?.setDisplayHomeAsUpEnabled(true)
-        relativeLayout_clinical.setOnClickListener { intent.putExtra("major","임상의약학과")
+        relativeLayout_clinical.setOnClickListener { intent.putExtra("major","clinical")
+            startActivity(intent)
+        }
+        relativeLayout_beauty.setOnClickListener {
+            intent.putExtra("major", "beauty")
+            startActivity(intent)
+        }
+        relativeLayout_software.setOnClickListener {
+            intent.putExtra("major","software")
+            startActivity(intent)
+        }
+        relativeLayout_gfs.setOnClickListener {
+            intent.putExtra("major","gfs")
             startActivity(intent)
         }
     }

@@ -30,7 +30,7 @@ class SchoolActivity : AppCompatActivity() {
 
     override fun onStart(){
         super.onStart()
-        auth.authFirebase()
+        auth.downloadToFirebase()
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)

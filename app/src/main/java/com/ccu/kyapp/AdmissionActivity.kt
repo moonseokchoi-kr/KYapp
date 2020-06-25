@@ -17,7 +17,7 @@ class AdmissionActivity : AppCompatActivity() {
     private val auth : FireBaseAuth = FireBaseAuth("admission_pdf/subject_info.pdf", this)
     private var isOpen : Boolean = false
     private var isOpenImg : Boolean = false
-    var transition : LayoutTransition = LayoutTransition()
+    private var transition : LayoutTransition = LayoutTransition()
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admission)
@@ -76,7 +76,7 @@ class AdmissionActivity : AppCompatActivity() {
     }
     override fun onStart() {
         super.onStart()
-        auth.authFirebase()
+        auth.downloadToFirebase()
     }
     private fun enableLayoutTransitions(){
         transition.enableTransitionType(LayoutTransition.APPEARING)
