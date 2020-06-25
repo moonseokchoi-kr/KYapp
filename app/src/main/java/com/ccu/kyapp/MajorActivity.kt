@@ -29,6 +29,7 @@ class MajorActivity : AppCompatActivity() {
         auth = FireBaseAuth(intent.getStringExtra("major"),this)
         Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         viewPager.adapter = ImagePagerUri(intent.getStringArrayListExtra("Urls"))
+        viewPager_major.setOnClickListener()
         textView_toolbarText.text = majorMap[intent.getStringExtra("major")]
         textView_majorTitle.text = majorMap[intent.getStringExtra("major")]
         var tb = Toolbar_major
