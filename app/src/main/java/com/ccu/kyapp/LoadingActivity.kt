@@ -11,20 +11,43 @@ import com.ccu.kyapp.auth.FireBaseAuth
 import kotlinx.android.synthetic.main.activity_progress.*
 import kotlinx.coroutines.*
 
+/**
+ *  before loading something to page, this page is actual loading content
+ *
+ *  @author MoonSeok Choi
+ *  @version 1.0 loading img to firebase
+ *  @since 2020.06.25
+ */
 class LoadingActivity : AppCompatActivity() {
-    private val job = Job()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
+        /*
+        set intent previous page
+         */
         var it : Intent = intent
+        /*
+        set string name of major
+         */
         val major = it.getStringExtra("major")
-        var auth : FireBaseAuth = FireBaseAuth(major,this)
+        /*
+        set auth firebase
+         */
+        val auth : FireBaseAuth = FireBaseAuth(major!!,this)
+        /*
+        loading view
+         */
         ProgressBar_pdf.visibility= View.VISIBLE
         it = Intent(this, MajorActivity::class.java)
+        /*
+        load img to firebase
+        todo change the download task for firebase
+         */
         lifecycleScope.launch{
             whenCreated {
-                var urls = withContext(this.coroutineContext) {
-                    var tmp : ArrayList<String> = auth.makePathList()
+                val urls = withContext(this.coroutineContext) {
+                    val tmp : ArrayList<String> = auth.makePathList()
                     delay(5000)
                     auth.sortUrls(tmp)
                 }
