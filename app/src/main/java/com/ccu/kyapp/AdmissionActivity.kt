@@ -11,31 +11,63 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ccu.kyapp.auth.FireBaseAuth
 import kotlinx.android.synthetic.main.activity_admission.*
 
+/**
+ * This page shows information about entrance exams.
+ * show entrance exams
+ * open pdf file
+ *
+ * @author ChoiMoonSeok
+ * @version 1.0 write script
+ * @since 2020.6.26
+ */
 class AdmissionActivity : AppCompatActivity() {
-    private var pdfOpener : PdfOpener =
-        PdfOpener(this)
+    /*
+    instance for open pdf
+     */
+    private val pdfOpener : PdfOpener = PdfOpener(this)
+    /*
+    auth firebase and download
+     */
     private val auth : FireBaseAuth = FireBaseAuth("admission_pdf/subject_info.pdf", this)
+    /*
+    toggle layout
+     */
     private var isOpen : Boolean = false
+    /*
+    toggle layout
+     */
     private var isOpenImg : Boolean = false
-    private var transition : LayoutTransition = LayoutTransition()
+    /*
+     transit layout
+     */
+    private val transition : LayoutTransition = LayoutTransition()
+
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_admission)
-        var admissionGroup : ViewGroup = linearLayout_admission
+        /*
+         set viewGroup child that animate something
+         */
+        val admissionGroup : ViewGroup = linearLayout_admission
         val tb = Toolbar_admission
         setSupportActionBar(tb)
         val ab = supportActionBar
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.title=""
+        /*
+        click layout animate layouts
+         */
         relativeLayout_susi.setOnClickListener {
             transition.addChild(admissionGroup, linearLayout_susi)
             transition.addChild(admissionGroup, relativeLayout_subject)
             transition.addChild(admissionGroup, relativeLayout_all)
+            // open
             if(!isOpen) {
                 linearLayout_susi.visibility = View.VISIBLE
                 isOpen = true
                 enableLayoutTransitions()
             }
+            //close
             else{
                 enableLayoutTransitions()
                 linearLayout_susi.visibility=View.GONE
@@ -46,21 +78,30 @@ class AdmissionActivity : AppCompatActivity() {
 
         }
         relativeLayout_subject.setOnClickListener{
+            //open
             if(!isOpenImg){
                 linearLayout_subject.visibility=View.VISIBLE
                 isOpenImg = true
             }
+            //close
             else{
                 linearLayout_subject.visibility=View.GONE
                 isOpenImg = false
             }
         }
         relativeLayout_subject_info.setOnClickListener{
-            var intent:Intent = Intent(Intent.ACTION_VIEW)
+            val intent:Intent = Intent(Intent.ACTION_VIEW)
             pdfOpener.openPdf(intent,auth.uri)
         }
 
     }
+
+    /**
+     * when touch the back button on toolbar move to previous page
+     *
+     * @param MenuItem item item of toolbar (like back button)
+     * @return boolean when find item return onOptionItemSelected if not return false
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
         Log.d("Home", "id :"+ R.id.home)
@@ -78,6 +119,13 @@ class AdmissionActivity : AppCompatActivity() {
         super.onStart()
         auth.downloadToFirebase()
     }
+
+    /**
+     * set animation when layout change
+     *
+     * @param None
+     * @return None
+     */
     private fun enableLayoutTransitions(){
         transition.enableTransitionType(LayoutTransition.APPEARING)
         transition.enableTransitionType(LayoutTransition.DISAPPEARING)
