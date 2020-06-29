@@ -8,11 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ccu.kyapp.auth.FireBaseAuth
 import kotlinx.android.synthetic.main.activity_school.*
 
-
+/**
+ * introduce school information page
+ *
+ * @author Moonseok Choi
+ * @version 1.0 make view and set event
+ */
 class SchoolActivity : AppCompatActivity() {
     private val pdf : PdfOpener =
         PdfOpener(this)
     private val auth : FireBaseAuth = FireBaseAuth( "promote_pdf/prime_promote.pdf", this)
+    /*
+    set external pdf viewer
+     */
     private var pdfChooser : Intent = Intent(Intent.ACTION_VIEW)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +38,17 @@ class SchoolActivity : AppCompatActivity() {
 
     override fun onStart(){
         super.onStart()
+        /*
+        download pdf file to fire base
+         */
         auth.downloadToFirebase()
     }
+    /**
+     * when touch the back button on toolbar move to previous page
+     *
+     * @param MenuItem item item of toolbar (like back button)
+     * @return boolean when find item return onOptionItemSelected if not return false
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
         Log.d("Home", "id :"+ R.id.home)
