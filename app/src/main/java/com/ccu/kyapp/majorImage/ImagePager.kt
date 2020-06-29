@@ -27,8 +27,8 @@ class ImagePager constructor(var context: Context, var imageList: IntArray): Pag
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        var view : View = inflater.inflate(R.layout.image_slider, container, false)
-        var imageView : ImageView = view.findViewById(R.id.imageView_slider)
+        val view : View = inflater.inflate(R.layout.image_slider, container, false)
+        val imageView : ImageView = view.findViewById(R.id.imageView_slider)
         imageView.setImageResource(imageList[position])
         container.addView(view)
 
