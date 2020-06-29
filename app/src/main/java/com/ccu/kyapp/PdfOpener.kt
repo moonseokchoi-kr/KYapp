@@ -13,9 +13,23 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.lang.Exception
 
+/**
+ *  open pdf
+ *
+ *  @author MoonSeok Choi
+ *  @version 1.0 add function openPdf
+ *  @since 2020.06.25
+ */
 class PdfOpener constructor(private var context: AppCompatActivity) {
 
-
+    /**
+     * get uri and set pdf intent
+     *
+     * @param Intent intent set intent Active pdf Viewer
+     * @param Uri pdf files
+     *
+     * @return None
+     */
     fun openPdf(intent:Intent, uri: Uri){
 
         intent.setDataAndType(uri,"application/pdf")

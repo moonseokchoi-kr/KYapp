@@ -10,6 +10,9 @@ import java.lang.Exception
 import java.net.URL
 import java.net.URLConnection
 
+/**
+ * this not use class
+ */
 class PdfDownLoader constructor(private val url: String, private val progress: ProgressBar, private val context: Context) : AsyncTask<Void,Void,String>() {
 
     var filepath: String = ""
