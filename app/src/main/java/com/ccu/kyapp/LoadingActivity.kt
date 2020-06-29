@@ -62,5 +62,15 @@ class LoadingActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * don't active back Button
+     *
+     * @param None
+     * @return None
+     */
+    override fun onBackPressed() {
+
+    }
+
 
 }
