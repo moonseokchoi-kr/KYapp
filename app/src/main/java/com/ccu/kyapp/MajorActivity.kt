@@ -41,9 +41,13 @@ class MajorActivity : AppCompatActivity() {
         auth = FireBaseAuth(intent.getStringExtra("major"),this)
         //Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         viewPager.adapter = ImagePagerUri(intent.getStringArrayListExtra("Urls"))
+<<<<<<< HEAD
 
         val scrollView  = ScrollView_intro
 
+=======
+        val scrollView  = ScrollView_intro
+>>>>>>> 6aeb5a86d1d8eceaf79e048facbb991c036d833f
         textView_toolbarText.text = majorMap[intent.getStringExtra("major")]
         val tb = Toolbar_major
         setSupportActionBar(tb)
