@@ -16,6 +16,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.ccu.kyapp.auth.FireBaseAuth
 import com.ccu.kyapp.majorImage.ImagePagerUri
 import kotlinx.android.synthetic.main.activity_major.*
+import org.w3c.dom.Text
 import java.lang.Runnable
 /**
  * class : MajorActivity
@@ -23,7 +24,8 @@ import java.lang.Runnable
  * This script is responsible for the behavior of the views that introduce each subject.
  *
  * @author MoonSeok Choi
- * @version 1.0
+ * @version 0.1 set major view and click event
+ * @version 0.2 change the major view using ViewPager and TabLayout
  * @see None
  * @since 2020.06.26
  *
@@ -64,7 +66,23 @@ class MajorActivity : AppCompatActivity() {
 
         YouTubePlayerView_major.play("vtx3-q8IBMs")
         //Log.d("major", intent.getStringExtra("major").toString())
+        //todo Change the Layout using ViewPager and TabLayout
 
+        scrollView.setOnScrollChangeListener { v, _, scrollY, _, oldScrollY ->
+            if(oldScrollY == 0)
+                textView_intro.setTextColor(Color.parseColor("#FFFFFF"))
+            when(scrollY){
+                in 0..v.findViewWithTag<TextView>("textView_intro").bottom -> {
+                    textView_intro.setTextColor(Color.parseColor("#FFFFFF"))
+                    textView_video.setTextColor(Color.parseColor("#000000"))
+                }
+                v.findViewWithTag<TextView>("textView_video").top -> {
+                    textView_video.setTextColor(Color.parseColor("#FFFFFF"))
+                    textView_intro.setTextColor(Color.parseColor("#000000"))
+                }
+            }
+            Log.d("scrollY" , "$scrollY")
+        }
         textView_intro.setOnClickListener{
             focusOnView(scrollView, textView_intro,scrollView.findViewWithTag("textView_intro"))
             textView_video.setTextColor(Color.parseColor("#000000"))
@@ -83,7 +101,7 @@ class MajorActivity : AppCompatActivity() {
      * when touch the back button on toolbar move to previous page
      *
      * @param MenuItem item item of toolbar (like back button)
-     * @return boolean when find item return onOpetionItemSelected if not return false
+     * @return boolean when find item return onOptionItemSelected if not return false
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
