@@ -12,9 +12,13 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.ccu.kyapp.auth.FireBaseAuth
 import com.ccu.kyapp.majorImage.ImagePagerUri
+import com.ccu.kyapp.majorTab.IntroFragment
 import kotlinx.android.synthetic.main.activity_major.*
 import org.w3c.dom.Text
 import java.lang.Runnable
@@ -45,15 +49,12 @@ class MajorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_major)
-        viewPager = viewPager_major
+        viewPager = viewPager2_major
         /* set intent previous page*/
         val intent = intent
         //Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         /* set adapter for view page ImagePagerUri is adapter for ViewPager2*/
-        viewPager.adapter = ImagePagerUri(intent.getStringArrayListExtra("Urls"))
-
-        /* ScrollView */
-        val scrollView  = ScrollView_intro
+        viewPager.adapter = MajorPageAdapter(this)
 
         textView_toolbarText.text = majorMap[intent.getStringExtra("major")]
         /* using toolbar*/
@@ -62,40 +63,7 @@ class MajorActivity : AppCompatActivity() {
         val ab = supportActionBar
         /*add back button toolbar*/
         ab?.setDisplayHomeAsUpEnabled(true)
-        ab?.title=""
-
-        YouTubePlayerView_major.play("vtx3-q8IBMs")
-        //Log.d("major", intent.getStringExtra("major").toString())
-        //todo Change the Layout using ViewPager and TabLayout
-
-        scrollView.setOnScrollChangeListener { v, _, scrollY, _, oldScrollY ->
-            if(oldScrollY == 0)
-                textView_intro.setTextColor(Color.parseColor("#FFFFFF"))
-            when(scrollY){
-                in 0..v.findViewWithTag<TextView>("textView_intro").bottom -> {
-                    textView_intro.setTextColor(Color.parseColor("#FFFFFF"))
-                    textView_video.setTextColor(Color.parseColor("#000000"))
-                }
-                v.findViewWithTag<TextView>("textView_video").top -> {
-                    textView_video.setTextColor(Color.parseColor("#FFFFFF"))
-                    textView_intro.setTextColor(Color.parseColor("#000000"))
-                }
-            }
-            Log.d("scrollY" , "$scrollY")
-        }
-        textView_intro.setOnClickListener{
-            focusOnView(scrollView, textView_intro,scrollView.findViewWithTag("textView_intro"))
-            textView_video.setTextColor(Color.parseColor("#000000"))
-        }
-        textView_video.setOnClickListener{
-            focusOnView(scrollView, textView_video,scrollView.findViewWithTag("textView_video"))
-            textView_intro.setTextColor(Color.parseColor("#000000"))
-
-        }
-        textView_ad.setOnClickListener{
-            //focusOnView(scrollView, textView_ad)
-        }
-
+        ab?.title = ""
     }
     /**
      * when touch the back button on toolbar move to previous page
@@ -116,24 +84,10 @@ class MajorActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    /**
-     * when click the text of top, scroll move to text on main layout
-     *
-     * @param ScrollView scrollView  scrollView layout
-     * @param TextView tab text of view on Top
-     * @param TextView view text of scrollView in main layout
-     * @return None
-     */
-    private fun focusOnView(scrollView: ScrollView, tab : TextView,view : TextView){
-            val runnable = object: Runnable {
-                override fun run() {
-                    scrollView.smoothScrollTo(0, view.top)
-                    tab.setTextColor(Color.parseColor("#FFFFFF"))
-                }
-            }
-        Handler().post(runnable)
+
+    private inner class MajorPageAdapter(fa: AppCompatActivity): FragmentStateAdapter(fa){
+        override fun getItemCount(): Int = 3
+        override fun createFragment(position: Int): Fragment = IntroFragment()
     }
-
-
 
 }
