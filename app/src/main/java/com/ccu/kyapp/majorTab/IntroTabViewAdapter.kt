@@ -1,11 +1,13 @@
 package com.ccu.kyapp.majorTab
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.ccu.kyapp.R
+import com.ccu.kyapp.majorImage.ImagePagerUri
+import kr.co.prnd.YouTubePlayerView
 
 /**
  * this class Adapter for ViewPager of activity_major.xml
@@ -13,6 +15,7 @@ import com.ccu.kyapp.R
  *
  * @author MoonSeok Choi
  * @version 0.1 create function and set variable
+ * @version 0.2 set variable in ViewHolder class
  * @since 2020.06.30
  */
 class IntroTabViewAdapter(private val tabItems: Array<TabItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -44,7 +47,15 @@ class IntroTabViewAdapter(private val tabItems: Array<TabItem>) : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(holder){
+            is IntroViewHolder-> holder.bind(position, tabItems)
+            is VideoViewHolder-> holder.bind(position, tabItems)
+            is AdmissionViewHolder -> holder.bind()
+        }
+    }
 
+    override fun getItemViewType(position: Int): Int {
+        return tabItems[position].getViewType()
     }
 
 }
@@ -53,20 +64,28 @@ class IntroTabViewAdapter(private val tabItems: Array<TabItem>) : RecyclerView.A
  * Intro tab view holder
  * @author MoonSeok Choi
  * @version 0.1 create class
+ * @version 0.2 set imgSlider and create bind
  * @since 2020.06.30
  */
 class IntroViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView) {
-
+    private val imgSlider : ViewPager2 = itemView.findViewById(R.id.viewPager2_major)
+    fun bind (position: Int, tabItems: Array<TabItem>){
+        imgSlider.adapter = ImagePagerUri(tabItems[position].getContent()as List<String>)
+    }
 }
 
 /**
  * Video tab view holder
  * @author MoonSeok Choi
  * @version 0.1 create class
+ * @version 0.2 set video and create bind
  * @since 2020.06.30
  */
 class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-
+    private val video : YouTubePlayerView = itemView.findViewById(R.id.YouTubePlayerView_major)
+    fun bind(position: Int, tabItems: Array<TabItem>){
+        video.play(tabItems[position].getContent() as String)
+    }
 }
 
 /**
@@ -76,5 +95,6 @@ class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
  * @since 2020.06.30
  */
 class AdmissionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    fun bind(){}
 
 }

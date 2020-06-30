@@ -18,8 +18,12 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.ccu.kyapp.auth.FireBaseAuth
 import com.ccu.kyapp.majorImage.ImagePagerUri
-import com.ccu.kyapp.majorTab.IntroFragment
+import com.ccu.kyapp.majorTab.IntroTabViewAdapter
+import com.ccu.kyapp.majorTab.TabItem
+import com.ccu.kyapp.majorTab.TabViewTypes
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_major.*
+import kotlinx.android.synthetic.main.intro_tab.*
 import org.w3c.dom.Text
 import java.lang.Runnable
 /**
@@ -35,9 +39,9 @@ import java.lang.Runnable
  *
  */
 class MajorActivity : AppCompatActivity() {
-    /** set ViewPager 2*/
-    private lateinit var viewPager: ViewPager2
-    /** this map is matches string previous view*/
+    /* set Tab Item*/
+
+    /* this map is matches string previous view*/
     private val majorMap : Map<String, String> = mapOf("software" to "기업소프트웨어학과",
         "clinical" to "임상의약학과", "extinguish" to "재난안전소방학과",
         "security" to "사이버보안공학과", "machine" to "융합기계공학과",
@@ -48,13 +52,25 @@ class MajorActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val viewPager = ViewPager2(this).apply{
+            parent
+        }
         setContentView(R.layout.activity_major)
-        viewPager = viewPager2_major
         /* set intent previous page*/
         val intent = intent
+        val tabItems : Array<TabItem> = arrayOf(
+            TabItem("학과소개", TabViewTypes.INTRO, intent.getStringArrayListExtra("Urls")),
+            TabItem("홍보영상", TabViewTypes.VIDEO, "UTx1igNpTpk"),
+            TabItem("입시정보", TabViewTypes.ADMISSION, "nothing")
+        )
+
         //Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         /* set adapter for view page ImagePagerUri is adapter for ViewPager2*/
-        viewPager.adapter = MajorPageAdapter(this)
+        viewPager2_tab.adapter = IntroTabViewAdapter(tabItems)
+        viewPager2_tab.isUserInputEnabled = false
+        TabLayoutMediator(tabLayout_major,viewPager2_tab){tab,position ->
+            tab.text = tabItems[position].getTabName()
+        }.attach()
 
         textView_toolbarText.text = majorMap[intent.getStringExtra("major")]
         /* using toolbar*/
@@ -82,12 +98,6 @@ class MajorActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-
-    private inner class MajorPageAdapter(fa: AppCompatActivity): FragmentStateAdapter(fa){
-        override fun getItemCount(): Int = 3
-        override fun createFragment(position: Int): Fragment = IntroFragment()
     }
 
 }

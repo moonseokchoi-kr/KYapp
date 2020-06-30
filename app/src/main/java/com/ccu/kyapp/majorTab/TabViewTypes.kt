@@ -11,5 +11,6 @@ class TabViewTypes {
     companion object {
         const val INTRO = 1
         const val VIDEO = 2
+        const val ADMISSION = 3
     }
 }
