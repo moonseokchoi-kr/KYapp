@@ -7,7 +7,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="24dp"
+        android:orientation="vertical"
         >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="학과 홍보 영상"
+            android:textSize="24sp"
+            />
         <kr.co.prnd.YouTubePlayerView
             android:id="@+id/YouTubePlayerView_major"
             android:layout_width="match_parent"
