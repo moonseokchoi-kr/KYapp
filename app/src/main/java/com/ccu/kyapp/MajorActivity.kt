@@ -12,10 +12,19 @@ import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.ccu.kyapp.auth.FireBaseAuth
 import com.ccu.kyapp.majorImage.ImagePagerUri
+import com.ccu.kyapp.majorTab.IntroTabViewAdapter
+import com.ccu.kyapp.majorTab.TabItem
+import com.ccu.kyapp.majorTab.TabViewTypes
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_major.*
+import kotlinx.android.synthetic.main.intro_tab.*
+import org.w3c.dom.Text
 import java.lang.Runnable
 /**
  * class : MajorActivity
@@ -23,15 +32,16 @@ import java.lang.Runnable
  * This script is responsible for the behavior of the views that introduce each subject.
  *
  * @author MoonSeok Choi
- * @version 1.0
+ * @version 0.1 set major view and click event
+ * @version 0.2 change the major view using ViewPager and TabLayout
  * @see None
  * @since 2020.06.26
  *
  */
 class MajorActivity : AppCompatActivity() {
-    /** set ViewPager 2*/
-    private lateinit var viewPager: ViewPager2
-    /** this map is matches string previous view*/
+    /* set Tab Item*/
+
+    /* this map is matches string previous view*/
     private val majorMap : Map<String, String> = mapOf("software" to "기업소프트웨어학과",
         "clinical" to "임상의약학과", "extinguish" to "재난안전소방학과",
         "security" to "사이버보안공학과", "machine" to "융합기계공학과",
@@ -42,16 +52,25 @@ class MajorActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val viewPager = ViewPager2(this).apply{
+            parent
+        }
         setContentView(R.layout.activity_major)
-        viewPager = viewPager_major
         /* set intent previous page*/
         val intent = intent
+        val tabItems : Array<TabItem> = arrayOf(
+            TabItem("학과소개", TabViewTypes.INTRO, intent.getStringArrayListExtra("Urls")),
+            TabItem("홍보영상", TabViewTypes.VIDEO, "UTx1igNpTpk"),
+            TabItem("입시정보", TabViewTypes.ADMISSION, "nothing")
+        )
+
         //Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         /* set adapter for view page ImagePagerUri is adapter for ViewPager2*/
-        viewPager.adapter = ImagePagerUri(intent.getStringArrayListExtra("Urls"))
-
-        /* ScrollView */
-        val scrollView  = ScrollView_intro
+        viewPager2_tab.adapter = IntroTabViewAdapter(tabItems)
+        viewPager2_tab.isUserInputEnabled = false
+        TabLayoutMediator(tabLayout_major,viewPager2_tab){tab,position ->
+            tab.text = tabItems[position].getTabName()
+        }.attach()
 
         textView_toolbarText.text = majorMap[intent.getStringExtra("major")]
         /* using toolbar*/
@@ -60,30 +79,13 @@ class MajorActivity : AppCompatActivity() {
         val ab = supportActionBar
         /*add back button toolbar*/
         ab?.setDisplayHomeAsUpEnabled(true)
-        ab?.title=""
-
-        YouTubePlayerView_major.play("vtx3-q8IBMs")
-        //Log.d("major", intent.getStringExtra("major").toString())
-
-        textView_intro.setOnClickListener{
-            focusOnView(scrollView, textView_intro,scrollView.findViewWithTag("textView_intro"))
-            textView_video.setTextColor(Color.parseColor("#000000"))
-        }
-        textView_video.setOnClickListener{
-            focusOnView(scrollView, textView_video,scrollView.findViewWithTag("textView_video"))
-            textView_intro.setTextColor(Color.parseColor("#000000"))
-
-        }
-        textView_ad.setOnClickListener{
-            //focusOnView(scrollView, textView_ad)
-        }
-
+        ab?.title = ""
     }
     /**
      * when touch the back button on toolbar move to previous page
      *
      * @param MenuItem item item of toolbar (like back button)
-     * @return boolean when find item return onOpetionItemSelected if not return false
+     * @return boolean when find item return onOptionItemSelected if not return false
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("BackButton", "Item Id " + item.itemId)
@@ -97,25 +99,5 @@ class MajorActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    /**
-     * when click the text of top, scroll move to text on main layout
-     *
-     * @param ScrollView scrollView  scrollView layout
-     * @param TextView tab text of view on Top
-     * @param TextView view text of scrollView in main layout
-     * @return None
-     */
-    private fun focusOnView(scrollView: ScrollView, tab : TextView,view : TextView){
-            val runnable = object: Runnable {
-                override fun run() {
-                    scrollView.smoothScrollTo(0, view.top)
-                    tab.setTextColor(Color.parseColor("#FFFFFF"))
-                }
-            }
-        Handler().post(runnable)
-    }
-
-
 
 }

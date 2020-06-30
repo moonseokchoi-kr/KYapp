@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ccu.kyapp.R
 
-class ImagePagerUri( var imgPathList: List<String>) : RecyclerView.Adapter<ImagePagerViewHolder>(){
+class ImagePagerUri(private val imgPathList: List<String>) : RecyclerView.Adapter<ImagePagerViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagePagerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.image_slider,parent,false)
