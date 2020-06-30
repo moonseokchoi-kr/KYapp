@@ -21,7 +21,8 @@
         </activity>
         <activity android:name="com.ccu.kyapp.MainActivity">
         </activity>
-        <activity android:name="com.ccu.kyapp.MajorActivity">
+        <activity android:name="com.ccu.kyapp.MajorActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity android:name="com.ccu.kyapp.MajorSelectorActivity">
         </activity>

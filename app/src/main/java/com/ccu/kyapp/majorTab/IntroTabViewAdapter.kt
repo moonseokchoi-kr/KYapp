@@ -81,6 +81,7 @@ class IntroViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView) {
  * @version 0.2 set video and create bind
  * @since 2020.06.30
  */
+//todo it 's not return vertical screen after, when play the video full screen
 class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     private val video : YouTubePlayerView = itemView.findViewById(R.id.YouTubePlayerView_major)
     fun bind(position: Int, tabItems: Array<TabItem>){
