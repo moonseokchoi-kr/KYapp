@@ -31,23 +31,19 @@ class FireBaseAuth constructor(var path: String, var context: AppCompatActivity)
             return mAuth.currentUser
         }
     lateinit var uri : Uri
-
+    var admission : ArrayList<String> = ArrayList()
     fun makePathList () : ArrayList<String>{
         val uris = ArrayList<String>()
         if(user != null){
-            GlobalScope.launch {
-            withContext(Dispatchers.IO){
-                    mStorageRef?.child("/$path")?.listAll()?.addOnSuccessListener { it ->
-                        it.items.forEach { it ->
-                            it.downloadUrl.addOnSuccessListener(context) {
-                                Log.d("image uri","$it")
-                                val url = it.toString()
-                                uris.add(url)
-                                Log.d("Count of uris", "${uris.size}")
-                            }.addOnFailureListener{
-                                Log.e("Error","FireBase Failure")
-                            }
-                        }
+            mStorageRef?.child("/$path")?.listAll()?.addOnSuccessListener { it ->
+                it.items.forEach { it ->
+                    it.downloadUrl.addOnSuccessListener(context) {
+                        Log.d("image uri","$it")
+                        val url = it.toString()
+                        uris.add(url)
+                        Log.d("Count of uris", "${uris.size}")
+                    }.addOnFailureListener{
+                        Log.e("Error","FireBase Failure")
                     }
                 }
             }
@@ -89,8 +85,11 @@ class FireBaseAuth constructor(var path: String, var context: AppCompatActivity)
             val reg = """2F\d{0,3}""".toRegex()
             val matchResult = reg.find(url)
             Log.d("phase url", matchResult!!.value)
-            if(matchResult!!.value == "2F")
+            if(matchResult!!.value == "2F"){
+                admission.add(url)
+                admission.sort()
                 continue
+            }
             val index = Integer.parseInt(matchResult!!.value.replace("2F",""))
             map[index] = url
         }
