@@ -2,6 +2,7 @@ package com.ccu.kyapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -48,9 +49,10 @@ class LoadingActivity : AppCompatActivity() {
             whenCreated {
                 val urls = withContext(this.coroutineContext) {
                     val tmp : ArrayList<String> = auth.makePathList()
-                    delay(5000)
+                    delay(5600)
                     auth.sortUrls(tmp)
                 }
+                it.putExtra("Admission", auth.admission)
                 it.putExtra("Urls", urls)
                 it.putExtra("major", major)
             }

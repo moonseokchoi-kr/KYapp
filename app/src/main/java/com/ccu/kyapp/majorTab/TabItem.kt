@@ -9,6 +9,8 @@ package com.ccu.kyapp.majorTab
  * @since 2020.06.30
  */
 class TabItem(private val tabName: String , private val viewType : Int, private val content : Any) {
+
+
     fun getTabName():String{
         return tabName
     }
@@ -18,4 +20,5 @@ class TabItem(private val tabName: String , private val viewType : Int, private 
     fun getContent():Any{
         return content
     }
+
 }

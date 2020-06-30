@@ -19,25 +19,29 @@ import kr.co.prnd.YouTubePlayerView
  * @since 2020.06.30
  */
 class IntroTabViewAdapter(private val tabItems: Array<TabItem>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    private val viewList : ArrayList<View> = ArrayList(3)
     private lateinit var rootView : View
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
          when (viewType) {
             TabViewTypes.INTRO -> {
                 rootView =
                     LayoutInflater.from(parent.context).inflate(R.layout.intro_tab, parent, false)
+                viewList.add(rootView)
                 return IntroViewHolder(rootView)
             }
             TabViewTypes.VIDEO -> {
                 rootView =
                     LayoutInflater.from(parent.context).inflate(R.layout.video_tab, parent, false)
+                viewList.add(rootView)
                 return VideoViewHolder(rootView)
             }
 
             else -> {
                 rootView =
                     LayoutInflater.from(parent.context).inflate(R.layout.admission_tab, parent, false)
-                return AdmissionViewHolder(rootView)
+                viewList.add(rootView)
+                return AdmissionViewHolder(rootView).apply {
+                }
             }
         }
     }
@@ -50,7 +54,7 @@ class IntroTabViewAdapter(private val tabItems: Array<TabItem>) : RecyclerView.A
         when(holder){
             is IntroViewHolder-> holder.bind(position, tabItems)
             is VideoViewHolder-> holder.bind(position, tabItems)
-            is AdmissionViewHolder -> holder.bind()
+            is AdmissionViewHolder -> holder.bind(position,tabItems)
         }
     }
 
@@ -96,6 +100,9 @@ class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
  * @since 2020.06.30
  */
 class AdmissionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-    fun bind(){}
+    private val imgSlider : ViewPager2 = itemView.findViewById(R.id.viewPager2_admission)
+    fun bind(position: Int, tabItems: Array<TabItem>){
+        imgSlider.adapter = ImagePagerUri(tabItems[position].getContent()as List<String>)
+    }
 
 }

@@ -23,6 +23,7 @@ import com.ccu.kyapp.majorTab.TabItem
 import com.ccu.kyapp.majorTab.TabViewTypes
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_major.*
+import kotlinx.android.synthetic.main.admission_tab.*
 import kotlinx.android.synthetic.main.intro_tab.*
 import org.w3c.dom.Text
 import java.lang.Runnable
@@ -39,8 +40,8 @@ import java.lang.Runnable
  *
  */
 class MajorActivity : AppCompatActivity() {
-    /* set Tab Item*/
-
+    /* set Adapter*/
+    private lateinit var adapter : IntroTabViewAdapter
     /* this map is matches string previous view*/
     private val majorMap : Map<String, String> = mapOf("software" to "기업소프트웨어학과",
         "clinical" to "임상의약학과", "extinguish" to "재난안전소방학과",
@@ -58,16 +59,19 @@ class MajorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_major)
         /* set intent previous page*/
         val intent = intent
+        Log.d("Admission url" , "${intent.getStringArrayListExtra("Admission")}")
         val tabItems : Array<TabItem> = arrayOf(
             TabItem("학과소개", TabViewTypes.INTRO, intent.getStringArrayListExtra("Urls")),
             TabItem("홍보영상", TabViewTypes.VIDEO, "UTx1igNpTpk"),
-            TabItem("입시정보", TabViewTypes.ADMISSION, "nothing")
+            TabItem("입시정보", TabViewTypes.ADMISSION, intent.getStringArrayListExtra("Admission"))
         )
 
         //Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         /* set adapter for view page ImagePagerUri is adapter for ViewPager2*/
-        viewPager2_tab.adapter = IntroTabViewAdapter(tabItems)
+        adapter  = IntroTabViewAdapter(tabItems)
+        viewPager2_tab.adapter = adapter
         viewPager2_tab.isUserInputEnabled = false
+
         TabLayoutMediator(tabLayout_major,viewPager2_tab){tab,position ->
             tab.text = tabItems[position].getTabName()
         }.attach()
@@ -81,6 +85,7 @@ class MajorActivity : AppCompatActivity() {
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.title = ""
     }
+
     /**
      * when touch the back button on toolbar move to previous page
      *
@@ -101,3 +106,5 @@ class MajorActivity : AppCompatActivity() {
     }
 
 }
+
+
