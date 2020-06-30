@@ -23,7 +23,7 @@
     </androidx.appcompat.widget.Toolbar>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         >
         <ImageView
             android:id="@+id/imageView_majorMain"
@@ -31,42 +31,42 @@
             android:layout_height="match_parent"
             android:src="@drawable/clinical_main"
             />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#B3000000"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:layout_alignParentBottom="true"
-            >
-
-            <TextView
-                android:id="@+id/textView_intro"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="학과소개"
-                android:textSize="25sp"
-                android:padding="12dp"
-                />
-
-            <TextView
-                android:id="@+id/textView_video"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="25sp"
-                android:padding="12dp"
-                android:text="홍보영상" />
-            <TextView
-                android:id="@+id/textView_ad"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="25sp"
-                android:padding="12dp"
-                android:text="모집인원"/>
-        </LinearLayout>
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B3000000"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:id="@+id/textView_intro"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="학과소개"
+            android:textSize="25sp"
+            android:padding="12dp"
+            />
+
+        <TextView
+            android:id="@+id/textView_video"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="25sp"
+            android:padding="12dp"
+            android:text="홍보영상" />
+        <TextView
+            android:id="@+id/textView_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textSize="25sp"
+            android:padding="12dp"
+            android:text="모집인원"/>
+    </LinearLayout>
     <ScrollView
         android:id="@+id/ScrollView_intro"
         android:layout_width="match_parent"

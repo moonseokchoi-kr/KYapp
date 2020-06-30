@@ -30,7 +30,6 @@ class SchoolActivity : AppCompatActivity() {
         val ab = supportActionBar
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.title=""
-        YouTubePlayerView_major.play("UTx1igNpTpk")
         RelativeLayout_pdf.setOnClickListener {
             pdf.openPdf(pdfChooser,auth.uri)
         startActivity(pdfChooser)}
@@ -38,6 +37,7 @@ class SchoolActivity : AppCompatActivity() {
 
     override fun onStart(){
         super.onStart()
+        YouTubePlayerView_major.play("UTx1igNpTpk")
         /*
         download pdf file to fire base
          */
