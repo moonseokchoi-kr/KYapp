@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/mainBg"
+    android:background="@drawable/gradient_background"
     tools:ignore="MissingDefaultResource">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,33 +13,26 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/topBg"
         android:id="@+id/Toolbar_select"
+        android:layout_marginTop="24dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme = "@style/ThemeOverlay.AppCompat.Dark.ActionBar"
        >
         <TextView
+            android:id="@+id/textView_toolbarText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity= "center"
             android:text="학과 소개"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/textColor"
             android:textSize="20sp"
+            android:fontFamily="@font/nanumbarungothic"
             />
     </androidx.appcompat.widget.Toolbar>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="PRIME 창의융합대학 소속학과"
-        android:gravity="center"
-        android:textSize="16dp"
-        android:textColor="#000000"
-        />
+
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:layout_margin="12dp"
         >
         <TableRow
