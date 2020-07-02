@@ -52,7 +52,7 @@ class LoadingActivity : AppCompatActivity() {
                     delay(5600)
                     auth.sortUrls(tmp)
                 }
-                it.putExtra("Admission", auth.admission)
+                //it.putExtra("Admission", auth.admission)
                 it.putExtra("Urls", urls)
                 it.putExtra("major", major)
             }

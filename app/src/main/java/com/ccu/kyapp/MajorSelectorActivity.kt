@@ -25,7 +25,7 @@ class MajorSelectorActivity : AppCompatActivity() {
         /*
         set next page
          */
-        val intent : Intent = Intent(this, LoadingActivity::class.java)
+        val intent : Intent = Intent(this, MajorActivity::class.java)
         /*
         set toolbar
          */
