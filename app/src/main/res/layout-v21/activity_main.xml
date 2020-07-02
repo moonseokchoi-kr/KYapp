@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F1F1F1"
+        android:background="@drawable/main_background"
        >
 
         <LinearLayout
@@ -18,162 +18,183 @@
             android:layout_height="200dp"
             android:padding="16dp"
             android:gravity="top|center"
-            android:background="#59A372"
+            android:background="@color/topBg"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="16dp"
-                android:textColor="#FFFFFF"
+                android:textColor="#666666"
                 android:textSize="10pt"
-                android:text="PRIME 창의융합대학 입학처" />
+                android:text="PRIME 창의융합대학"
+                android:fontFamily="@font/nanumbarungothic"/>
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout_school"
-            android:layout_width="180dp"
-            android:layout_height="140dp"
-            android:background="@drawable/btn_main"
-            android:elevation="10dp"
-            android:orientation="vertical"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_main"
-            app:layout_constraintHorizontal_bias="0.493"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline_btn_top"
-            app:layout_constraintVertical_bias="0.209"
-            app:layout_constraintVertical_weight="5">
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintTop_toTopOf="@+id/linearLayout_title"
+            tools:layout_editor_absoluteX="16dp">
 
-            <ImageView
-                android:id="@+id/imageView_school"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerInParent="true"
-                android:paddingBottom="16dp"
-                android:src="@drawable/iconfinder_school" />
-
-            <TextView
-                android:id="@+id/textView_school"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
+            <RelativeLayout
+                android:id="@+id/relativeLayout_school"
+                android:layout_width="165dp"
+                android:layout_height="144dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/btn_main"
-                android:padding="16px"
-                android:text="단과대소개" />
+                android:elevation="10dp"
+                android:orientation="vertical"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.209"
+                app:layout_constraintVertical_weight="5">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imageView_school"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_school" />
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout_major"
-            android:layout_width="180dp"
-            android:layout_height="140dp"
-            android:background="@drawable/btn_main"
-            android:elevation="10dp"
-            android:orientation="vertical"
-            android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.489"
-            app:layout_constraintStart_toStartOf="@+id/guideline_main"
-            app:layout_constraintTop_toTopOf="@+id/guideline_btn_top"
-            app:layout_constraintVertical_bias="0.209"
-            app:layout_constraintVertical_weight="5">
+                <TextView
+                    android:id="@+id/textView_school"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="16px"
+                    android:text="단과대소개" />
 
-            <ImageView
-                android:id="@+id/imageView_major"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerInParent="true"
-                android:paddingBottom="16dp"
-                android:src="@drawable/iconfinder_copybook" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/textView_major"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
+            <RelativeLayout
+                android:id="@+id/relativeLayout_major"
+                android:layout_width="165dp"
+                android:layout_height="144dp"
+
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/btn_main"
-                android:padding="16px"
-                android:text="학과소개" />
+                android:elevation="10dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.489"
+                app:layout_constraintVertical_bias="0.209"
+                app:layout_constraintVertical_weight="5">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imageView_major"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_copybook" />
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout_admission"
-            android:layout_width="180dp"
-            android:layout_height="140dp"
-            android:background="@drawable/btn_main"
-            android:elevation="10dp"
-            android:orientation="vertical"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_main"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline_btn_top"
-            app:layout_constraintVertical_bias="0.993"
-            app:layout_constraintVertical_weight="5">
+                <TextView
+                    android:id="@+id/textView_major"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="16px"
+                    android:text="학과소개" />
 
-            <ImageView
-                android:id="@+id/imageView_admission"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerInParent="true"
-                android:paddingBottom="16dp"
-                android:src="@drawable/iconfinder_education" />
+            </RelativeLayout>
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView_admission"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            android:layout_margin="16dp"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout_admission"
+                android:layout_width="165dp"
+                android:layout_height="144dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/btn_main"
-                android:padding="16dp"
-                android:text="입시정보" />
+                android:elevation="10dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_main"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline_btn_top"
+                app:layout_constraintVertical_bias="0.993"
+                app:layout_constraintVertical_weight="5">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/imageView_admission"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_education" />
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout_community"
-            android:layout_width="180dp"
-            android:layout_height="140dp"
-            android:background="@drawable/btn_main"
-            android:elevation="10dp"
-            android:orientation="vertical"
-            android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.489"
-            app:layout_constraintStart_toStartOf="@+id/guideline_main"
-            app:layout_constraintTop_toTopOf="@+id/guideline_btn_top"
-            app:layout_constraintVertical_bias="1.0"
-            app:layout_constraintVertical_weight="5">
+                <TextView
+                    android:id="@+id/textView_admission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="16px"
+                    android:text="입시정보" />
 
-            <ImageView
-                android:id="@+id/school_image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_centerInParent="true"
-                android:paddingBottom="16dp"
-                android:src="@drawable/iconfinder_crew" />
+            </RelativeLayout>
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/school_image"
-                android:layout_alignParentBottom="true"
-                android:layout_centerInParent="true"
+            <RelativeLayout
+                android:id="@+id/relativeLayout_community"
+                android:layout_width="165dp"
+                android:layout_height="144dp"
+
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/btn_main"
-                android:padding="16px"
-                android:text="커뮤니티" />
+                android:elevation="10dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/guideline_btn_bot"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.489"
+                app:layout_constraintStart_toStartOf="@+id/guideline_main"
+                app:layout_constraintTop_toTopOf="@+id/guideline_btn_top"
+                app:layout_constraintVertical_bias="1.0"
+                app:layout_constraintVertical_weight="5">
 
-        </RelativeLayout>
+                <ImageView
+                    android:id="@+id/school_image"
+                    android:layout_width="80dp"
+                    android:layout_height="60dp"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="16dp"
+                    android:src="@drawable/iconfinder_crew" />
 
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/school_image"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/btn_main"
+                    android:padding="16px"
+                    android:text="커뮤니티" />
+
+            </RelativeLayout>
+        </LinearLayout>
         <TextView
             android:id="@+id/textView2"
             android:layout_width="0dp"
