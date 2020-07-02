@@ -71,11 +71,12 @@
                 android:layout_centerInParent="true"
                 />
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/relativeLayout_video"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:paddingStart="16dp"
@@ -102,11 +103,32 @@
                 android:layout_centerInParent="true"
                 />
         </RelativeLayout>
+        <ScrollView
+            android:id="@+id/scrollView_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            >
+            <LinearLayout
+                android:id="@+id/linearLayout_susi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:animateLayoutChanges="true"
+                >
+                <!--make Datbase use Recycler view-->
+                <kr.co.prnd.YouTubePlayerView
+                    android:id="@+id/YouTubePlayerView_major"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+            </LinearLayout>
+        </ScrollView>
         <RelativeLayout
             android:id="@+id/relativeLayout_admission"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:paddingStart="16dp"
@@ -137,9 +159,10 @@
             android:id="@+id/relativeLayout_greeting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
             android:paddingStart="16dp"
             android:paddingBottom="8dp"
             android:paddingTop="8dp"
