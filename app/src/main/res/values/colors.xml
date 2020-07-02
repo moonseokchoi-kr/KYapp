@@ -5,7 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorKy">#7BBD27</color>
     <color name="colorGray">#777777</color>
-    <color name="mainBg">#F1F1F1</color>
-    <color name="topBg">#59A372</color>
+    <color name="mainBg">#FCFCFC</color>
+    <color name="topBg">#C4D8EA</color>
     <color name="white">#FFFFFF</color>
 </resources>
