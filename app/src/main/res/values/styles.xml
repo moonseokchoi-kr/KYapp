@@ -2,6 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- toolbar back button icon-->
+        <item name="android:homeAsUpIndicator">@drawable/back_arrow</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/topBg</item>

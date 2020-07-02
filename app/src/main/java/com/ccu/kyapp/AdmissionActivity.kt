@@ -89,6 +89,30 @@ class AdmissionActivity : AppCompatActivity() {
                 isOpenImg = false
             }
         }
+        relativeLayout_all.setOnClickListener{
+            //open
+            if(!isOpenImg){
+                linearLayout_all.visibility=View.VISIBLE
+                isOpenImg = true
+            }
+            //close
+            else{
+                linearLayout_all.visibility=View.GONE
+                isOpenImg = false
+            }
+        }
+        relativeLayout_ex.setOnClickListener{
+            //open
+            if(!isOpenImg){
+                linearLayout_ex.visibility=View.VISIBLE
+                isOpenImg = true
+            }
+            //close
+            else{
+                linearLayout_ex.visibility=View.GONE
+                isOpenImg = false
+            }
+        }
         relativeLayout_subject_info.setOnClickListener{
             val intent:Intent = Intent(Intent.ACTION_VIEW)
             pdfOpener.openPdf(intent,auth.uri)
