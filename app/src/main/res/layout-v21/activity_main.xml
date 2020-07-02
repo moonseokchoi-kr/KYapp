@@ -20,15 +20,29 @@
             android:gravity="top|center"
             android:background="@color/topBg"
             app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:textColor="#666666"
-                android:textSize="10pt"
-                android:text="PRIME 창의융합대학"
-                android:fontFamily="@font/nanumbarungothic"/>
+                >
+                <TextView
+                    android:id="@+id/textView_toolbarText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:textColor="#666666"
+                    android:textSize="10pt"
+                    android:layout_centerInParent="true"
+                    android:text="PRIME 창의융합대학"
+                    android:fontFamily="@font/nanumbarungothic"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@id/textView_toolbarText"
+                    android:background="@color/colorGray"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout

@@ -5,7 +5,7 @@
 
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
-            <corners android:radius="20dp"/>
+            <corners android:radius="10dp"/>
             <solid android:color="#6077A1"/>
             <padding
                 android:bottom="8dp"
@@ -19,7 +19,7 @@
 
         <item android:state_enabled="true">
             <shape android:shape="rectangle">
-                <corners  android:radius="20dp"/>
+                <corners  android:radius="10dp"/>
                 <solid android:color="@android:color/white"/>
                 <padding
                     android:bottom="8dp"
@@ -33,7 +33,7 @@
 =
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
-            <corners android:radius="20dp"/>
+            <corners android:radius="10dp"/>
             <solid android:color="@color/colorGray"/>
             <padding
                 android:bottom="8dp"

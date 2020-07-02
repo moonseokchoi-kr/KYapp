@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.ccu.kyapp.MajorActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/gradient_background">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -13,30 +14,155 @@
         android:id="@+id/Toolbar_major"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
-        <TextView
-            android:id="@+id/textView_toolbarText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            />
-    </androidx.appcompat.widget.Toolbar>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout_major"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager2_tab"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/textView_toolbarText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="24dp"
+                android:textStyle="bold"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/textView_toolbarText"
+                android:background="@color/colorGray"
+                android:layout_marginRight="12dp"
+                />
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/relativeLayout_intro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:elevation="10dp"
+            android:background="@drawable/btn_main"
+            >
+            <TextView
+                android:id="@+id/textView_intro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="학과소개"
+                android:textSize="20sp"
+                android:paddingStart="20dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/next_arrow"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayout_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:elevation="10dp"
+            android:background="@drawable/btn_main"
+            >
+            <TextView
+                android:id="@+id/textView_video"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="학과 홍보 동영상"
+                android:textSize="20sp"
+                android:paddingStart="20dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/next_arrow"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayout_admission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:elevation="10dp"
+            android:background="@drawable/btn_main"
+            >
+            <TextView
+                android:id="@+id/textView_admission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="학과 모집 요강"
+                android:textSize="20sp"
+                android:paddingStart="20dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/next_arrow"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayout_greeting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:elevation="10dp"
+            android:background="@drawable/btn_main"
+            >
+            <TextView
+                android:id="@+id/textView_greeting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="학과장 인사말"
+                android:textSize="20sp"
+                android:paddingStart="20dp"
+                android:layout_centerInParent="true"
+                android:layout_alignParentRight="true"
+                />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/next_arrow"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
