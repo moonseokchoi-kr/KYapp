@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:andorid="http://schemas.android.com/apk/res-auto">
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="100"
+        android:font="@font/hanygo_light"
+        />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="300"
+        android:font="@font/hanygo_mid"
+        />
+    <font
+        android:fontStyle="normal"
+        android:fontWeight="900"
+        android:font="@font/hanygo_bold"
+        />
+</font-family>
