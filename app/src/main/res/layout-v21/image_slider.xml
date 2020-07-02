@@ -6,6 +6,5 @@
         android:id="@+id/imageView_slider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/btn_main"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

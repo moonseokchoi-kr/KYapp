@@ -12,10 +12,7 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
-import com.ccu.kyapp.majorTab.IntroTabViewAdapter
-import kotlinx.android.synthetic.main.activity_admission.*
 import kotlinx.android.synthetic.main.activity_major.*
-import kotlinx.android.synthetic.main.activity_major.linearLayout_susi
 
 /**
  * class : MajorActivity
@@ -52,7 +49,6 @@ class MajorActivity : AppCompatActivity() {
         /* set intent previous page*/
         var intent = intent
         Log.d("Admission url" , "${intent.getStringArrayListExtra("Admission")}")
-        val tmp : Array<String> = intent.getStringArrayExtra("Urls")
         val major  = intent.getStringExtra("major")
         //Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         /* set adapter for view page ImagePagerUri is adapter for ViewPager2*/
@@ -64,28 +60,30 @@ class MajorActivity : AppCompatActivity() {
         val ab = supportActionBar
         /*add back button toolbar*/
         ab?.setDisplayHomeAsUpEnabled(true)
-        ab?.title = ""
+        ab?.setDisplayShowTitleEnabled(false)
 
         relativeLayout_intro.setOnClickListener{
+            Log.d("click intro ", "Click!!")
             intent = Intent(this, LoadingActivity::class.java)
             intent.putExtra("major",major)
-            intent.putExtra("Urls",tmp)
+            startActivity(intent)
         }
 
         relativeLayout_video.setOnClickListener {
-            transition.addChild(YouTubePlayerView_major, linearLayout_susi)
+            transition.addChild(scrollView_video, linearLayout_video)
 
             // open
             if(!isOpen) {
-                linearLayout_susi.visibility = View.VISIBLE
+                scrollView_video.visibility = View.VISIBLE
+                linearLayout_video.visibility= View.VISIBLE
                 isOpen = true
                 enableLayoutTransitions()
             }
             //close
             else{
                 enableLayoutTransitions()
-                linearLayout_susi.visibility= View.GONE
-                linearLayout_subject.visibility= View.GONE
+                scrollView_video.visibility= View.GONE
+                linearLayout_video.visibility= View.GONE
                 isOpen = false
             }
 

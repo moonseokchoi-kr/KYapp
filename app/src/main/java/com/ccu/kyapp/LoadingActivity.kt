@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenCreated
@@ -11,6 +12,7 @@ import androidx.lifecycle.whenStarted
 import com.ccu.kyapp.auth.FireBaseAuth
 import kotlinx.android.synthetic.main.activity_progress.*
 import kotlinx.coroutines.*
+import java.lang.ClassCastException
 
 /**
  *  before loading something to page, this page is actual loading content
@@ -40,21 +42,26 @@ class LoadingActivity : AppCompatActivity() {
         loading view
          */
         ProgressBar_pdf.visibility= View.VISIBLE
-        it = Intent(this, MajorActivity::class.java)
+        it = Intent(this, MajorIntroActivity::class.java)
         /*
         load img to firebase
         todo change the download task for firebase
          */
         lifecycleScope.launch{
             whenCreated {
-                val urls = withContext(this.coroutineContext) {
-                    val tmp : ArrayList<String> = auth.makePathList()
-                    delay(5600)
-                    auth.sortUrls(tmp)
+                try{
+                    val urls = withContext(this.coroutineContext) {
+                        val tmp : ArrayList<String> = auth.makePathList()
+                        delay(5600)
+                        auth.sortUrls(tmp)
+                    }
+                    //it.putExtra("Admission", auth.admission)
+                    it.putExtra("Urls", urls)
+                    //it.putExtra("major", major)
+                }catch(e:ClassCastException){
+                    Toast.makeText(applicationContext,"Check the Internet Connection",Toast.LENGTH_LONG)
                 }
-                //it.putExtra("Admission", auth.admission)
-                it.putExtra("Urls", urls)
-                it.putExtra("major", major)
+
             }
             whenStarted {
                 delay(300)

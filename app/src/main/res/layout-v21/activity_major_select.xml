@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/gradient_background"
-    tools:ignore="MissingDefaultResource">
+    tools:context=".MajorSelectorActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TableLayout
+        android:id="@+id/tableLayout_selector"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -40,14 +41,16 @@
             android:layout_marginBottom="16dp"
             >
             <RelativeLayout
-                android:id="@+id/relativeLayout_software"
+                android:tag="relativeLayout_software"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginEnd="8dp"
-                >
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_software"
@@ -71,14 +74,16 @@
 
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/relativeLayout_clinical"
+                android:tag="relativeLayout_clinical"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginEnd="8dp"
-                >
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_clinical"
@@ -102,14 +107,16 @@
 
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/relativeLayout_extinguish"
+                android:tag="relativeLayout_extinguish"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginEnd="8dp"
-                >
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_extinguish"
@@ -138,14 +145,16 @@
             android:layout_marginBottom="16dp"
             >
             <RelativeLayout
-                android:id="@+id/relativeLayout_security"
+                android:tag="relativeLayout_security"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginRight="8dp"
-                >
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_security"
@@ -169,14 +178,16 @@
 
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/relativeLayout_machine"
+                android:tag="relativeLayout_machine"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginRight="8dp"
-                >
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_machine"
@@ -200,14 +211,16 @@
 
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/relativeLayout_beauty"
+                android:tag="relativeLayout_beauty"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginRight="8dp"
-                >
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_beauty"
@@ -236,14 +249,16 @@
             android:layout_marginBottom="16dp"
             >
             <RelativeLayout
-                android:id="@+id/relativeLayout_it"
+                android:tag="relativeLayout_it"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginEnd="8dp"
-                >
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_it"
@@ -267,13 +282,15 @@
 
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/relativeLayout_bio"
+                android:tag="relativeLayout_bio"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
                 >
 
                 <ImageView
@@ -298,14 +315,16 @@
 
             </RelativeLayout>
             <RelativeLayout
-                android:id="@+id/relativeLayout_gfs"
+                android:tag="relativeLayout_gfs"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginEnd="8dp"
-                >
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_gfs"
@@ -334,14 +353,16 @@
             android:layout_marginBottom="16dp"
             >
             <RelativeLayout
-                android:id="@+id/relativeLayout_design"
+                android:tag="relativeLayout_design"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:background="@drawable/btn_main"
                 android:elevation="10dp"
                 android:orientation="vertical"
                 android:layout_marginEnd="8dp"
-                >
+                android:clickable="true"
+                android:onClick="clickHandlerCell"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_design"

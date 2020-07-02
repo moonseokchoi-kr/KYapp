@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_major_select.*
@@ -23,35 +24,13 @@ class MajorSelectorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_major_select)
         /*
-        set next page
-         */
-        val intent : Intent = Intent(this, MajorActivity::class.java)
-        /*
         set toolbar
          */
         val tb = Toolbar_select
         setSupportActionBar(tb)
         val ab : ActionBar? = supportActionBar
-        ab!!.title = ""
-        ab.setDisplayHomeAsUpEnabled(true)
-        /*
-        click event
-         */
-        relativeLayout_clinical.setOnClickListener { intent.putExtra("major","clinical")
-            startActivity(intent)
-        }
-        relativeLayout_beauty.setOnClickListener {
-            intent.putExtra("major", "beauty")
-            startActivity(intent)
-        }
-        relativeLayout_software.setOnClickListener {
-            intent.putExtra("major","software")
-            startActivity(intent)
-        }
-        relativeLayout_gfs.setOnClickListener {
-            intent.putExtra("major","gfs")
-            startActivity(intent)
-        }
+        ab?.setDisplayShowTitleEnabled(false)
+        ab?.setDisplayHomeAsUpEnabled(true)
     }
     /**
      * when touch the back button on toolbar move to previous page
@@ -71,4 +50,40 @@ class MajorSelectorActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    /**
+     * make map for major page
+     *
+     * @param None
+     * @return None
+     */
+    private fun getData():Map<String,String>{
+        val data = mutableMapOf<String,String>()
+        data["relativeLayout_gfs"] = "gfs"
+        data["relativeLayout_beauty"] = "beauty"
+        data["relativeLayout_software"] = "software"
+        data["relativeLayout_bio"] = "bio"
+
+        return data
+    }
+
+    /**
+     * click the cell of tablelayout move to majorpage
+     *
+     * @param View v view of tableLayout
+     * @return None
+     */
+    fun clickHandlerCell(v:View){
+        val tableData = getData()
+        val major = tableData[v.tag]
+        val intent:Intent = Intent(this, MajorActivity::class.java)
+        //major data don't exist in map don't start activity
+        if(major == null)
+            return
+        intent.putExtra("major", major)
+        startActivity(intent)
+    }
+
+
+
 }

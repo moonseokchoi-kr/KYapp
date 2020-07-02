@@ -29,7 +29,7 @@ class SchoolActivity : AppCompatActivity() {
         setSupportActionBar(tb)
         val ab = supportActionBar
         ab?.setDisplayHomeAsUpEnabled(true)
-        ab?.title=""
+        ab?.setDisplayShowTitleEnabled(false)
         RelativeLayout_pdf.setOnClickListener {
             pdf.openPdf(pdfChooser,auth.uri)
         startActivity(pdfChooser)}
