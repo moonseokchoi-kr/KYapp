@@ -3,8 +3,6 @@ package com.ccu.kyapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
-import com.ccu.kyapp.majorImage.ImagePager
 import com.ccu.kyapp.news.NewItem
 import com.ccu.kyapp.news.NewsAdapter
 import kotlinx.android.synthetic.main.activity_main.*

@@ -12,6 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.ccu.kyapp.R
 
+/**
+ * Adapter for ViewPager2 it will make image slide
+ *
+ * @author MoonSeok Choi
+ * @version 0.1 create adapter and write override function
+ * @since 2020.06.30
+ */
 class ImagePagerUri(private val imgPathList: List<String>) : RecyclerView.Adapter<ImagePagerViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagePagerViewHolder {
@@ -28,6 +35,14 @@ class ImagePagerUri(private val imgPathList: List<String>) : RecyclerView.Adapte
     }
 }
 
+/**
+ * View Holder for Adapter
+ * bind view attribute
+ *
+ * @author MoonSeok Choi
+ * @version 0.1 create class and write bind function
+ * @since 2020.06.30
+ */
 class ImagePagerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
     private val imgView : ImageView = itemView.findViewById(R.id.imageView_slider)

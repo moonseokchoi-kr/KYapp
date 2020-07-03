@@ -18,7 +18,8 @@ import java.lang.ClassCastException
  *  before loading something to page, this page is actual loading content
  *
  *  @author MoonSeok Choi
- *  @version 1.0 loading img to firebase
+ *  @version 0.1 loading img to firebase
+ *  @version 0.2 change code load to firebase
  *  @since 2020.06.25
  */
 class LoadingActivity : AppCompatActivity() {
@@ -51,12 +52,12 @@ class LoadingActivity : AppCompatActivity() {
             whenCreated {
                 try{
                     val urls = withContext(this.coroutineContext) {
-                        val tmp : ArrayList<String> = auth.makePathList()
-                        delay(5600)
-                        auth.sortUrls(tmp)
+                        auth.makePathList()
+
                     }
+                    delay(1000)
                     //it.putExtra("Admission", auth.admission)
-                    it.putExtra("Urls", urls)
+                    it.putExtra("Urls", auth.sortUrls(urls))
                     //it.putExtra("major", major)
                 }catch(e:ClassCastException){
                     Toast.makeText(applicationContext,"Check the Internet Connection",Toast.LENGTH_LONG)
@@ -64,7 +65,6 @@ class LoadingActivity : AppCompatActivity() {
 
             }
             whenStarted {
-                delay(300)
                 startActivity(it)
             }
         }
