@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.ccu.kyapp.auth.FireBaseAuth
+import com.ccu.kyapp.auth.FireBaseDownload
 import kotlinx.android.synthetic.main.activity_school.*
 
 /**
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_school.*
 class SchoolActivity : AppCompatActivity() {
     private val pdf : PdfOpener =
         PdfOpener(this)
-    private val auth : FireBaseAuth = FireBaseAuth( "promote_pdf/prime_promote.pdf", this)
+    private val download : FireBaseDownload = FireBaseDownload( "promote_pdf/prime_promote.pdf", this)
     /*
     set external pdf viewer
      */
@@ -31,7 +31,7 @@ class SchoolActivity : AppCompatActivity() {
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.setDisplayShowTitleEnabled(false)
         RelativeLayout_pdf.setOnClickListener {
-            pdf.openPdf(pdfChooser,auth.uri)
+            pdf.openPdf(pdfChooser,download.uri)
         startActivity(pdfChooser)}
     }
 
@@ -41,7 +41,7 @@ class SchoolActivity : AppCompatActivity() {
         /*
         download pdf file to fire base
          */
-        auth.downloadToFirebase()
+        download.downloadToFirebase()
     }
     /**
      * when touch the back button on toolbar move to previous page
@@ -54,7 +54,7 @@ class SchoolActivity : AppCompatActivity() {
         Log.d("Home", "id :"+ R.id.home)
         when(item.itemId){
             android.R.id.home -> {finish()
-                auth.deleteUser()
+                download.deleteUser()
                 return true}
             else ->{
                 Log.e("BackButton","Cant find ID")

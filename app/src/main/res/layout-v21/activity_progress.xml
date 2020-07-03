@@ -12,7 +12,7 @@
         tools:ignore="MissingConstraints"
         android:paddingTop="300dp">
         <ProgressBar
-            android:id="@+id/ProgressBar_pdf"
+            android:id="@+id/ProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:indeterminateDrawable="@drawable/circle_progress"

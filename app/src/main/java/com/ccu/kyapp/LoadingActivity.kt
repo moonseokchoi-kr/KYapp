@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenCreated
 import androidx.lifecycle.whenStarted
-import com.ccu.kyapp.auth.FireBaseAuth
+import com.ccu.kyapp.auth.FireBaseDownload
 import kotlinx.android.synthetic.main.activity_progress.*
 import kotlinx.coroutines.*
 import java.lang.ClassCastException
@@ -20,6 +20,7 @@ import java.lang.ClassCastException
  *  @author MoonSeok Choi
  *  @version 0.1 loading img to firebase
  *  @version 0.2 change code load to firebase
+ *  @version 0.3 load to firebase change to background
  *  @since 2020.06.25
  */
 class LoadingActivity : AppCompatActivity() {
@@ -38,36 +39,17 @@ class LoadingActivity : AppCompatActivity() {
         /*
         set auth firebase
          */
-        val auth : FireBaseAuth = FireBaseAuth(major!!,this)
+        val download : FireBaseDownload = FireBaseDownload(major!!,this)
         /*
         loading view
          */
-        ProgressBar_pdf.visibility= View.VISIBLE
+        ProgressBar.visibility= View.VISIBLE
         it = Intent(this, MajorIntroActivity::class.java)
         /*
         load img to firebase
         todo change the download task for firebase
          */
-        lifecycleScope.launch{
-            whenCreated {
-                try{
-                    val urls = withContext(this.coroutineContext) {
-                        auth.makePathList()
 
-                    }
-                    delay(1000)
-                    //it.putExtra("Admission", auth.admission)
-                    it.putExtra("Urls", auth.sortUrls(urls))
-                    //it.putExtra("major", major)
-                }catch(e:ClassCastException){
-                    Toast.makeText(applicationContext,"Check the Internet Connection",Toast.LENGTH_LONG)
-                }
-
-            }
-            whenStarted {
-                startActivity(it)
-            }
-        }
 
     }
 

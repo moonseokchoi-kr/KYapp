@@ -1,5 +1,6 @@
 package com.ccu.kyapp.auth
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.util.Log
@@ -21,37 +22,36 @@ import kotlin.collections.ArrayList
  *  @author MoonSeok Choi
  *  @version 0.1 create class and create functions
  *  @version 0.2 create function makePathList, phaseFilename, sortUrls
+ *  @version 0.3 change dowload and auth fire base background
  *  @since 2020.06.25
  */
 
-class FireBaseAuth constructor(var path: String, var context: AppCompatActivity){
+class FireBaseImageDownloader constructor(var path: String, var context: AppCompatActivity) : FirebaseService(){
 
-    private val mStorageRef: StorageReference?
-        get(){
-            return FirebaseStorage.getInstance().reference
-        }
-    private val mAuth : FirebaseAuth
-        get(){
-            return FirebaseAuth.getInstance()
-        }
-    private val user : FirebaseUser?
-        get(){
-            return mAuth.currentUser
-        }
     /*
     save the uri
      */
     lateinit var uri : Uri
     //var admission : ArrayList<String> = ArrayList()
+
+    override fun onHandleWork(intent: Intent) {
+        super.onHandleWork(intent)
+        sortUrls(makePathList())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
     /**
      * make path list of image files at firebase storage
      * certify use [signInAnonymously]
      * @param None
      * @return None
      */
-    fun makePathList () : ArrayList<String>{
+    private fun makePathList () : ArrayList<String>{
         val uris = ArrayList<String>()
-        if(user != null){
+
             mStorageRef?.child("/$path")?.listAll()?.addOnSuccessListener { it ->
                 it.items.forEach { it ->
                     it.downloadUrl.addOnSuccessListener(context) {
@@ -64,64 +64,9 @@ class FireBaseAuth constructor(var path: String, var context: AppCompatActivity)
                     }
                 }
             }
-        }
-        else{
-            signInAnonymously()
-            makePathList()
-        }
         return uris
     }
 
-    /**
-     * downloading to file at firebase storage like pdf, image
-     * this function only one file download
-     * certify use [signInAnonymously]
-     * @param None
-     * @return None
-     */
-    fun downloadToFirebase(){
-        if(user != null){
-            mStorageRef?.child(path)?.downloadUrl
-                ?.addOnSuccessListener { uri = it
-                    Log.d("downLoad Uri", "uri :$uri")
-                }
-                ?.addOnFailureListener{ Log.e("Error" , "URLDownload Failure:Firebase") }
-        }else{
-            signInAnonymously();
-            downloadToFirebase()
-        }
-    }
-
-    /**
-     * certify firebase anonymously
-     *
-     * @param None
-     * @return None
-     */
-    private fun signInAnonymously() {
-        mAuth.signInAnonymously()
-            .addOnSuccessListener(context) {
-                Toast.makeText(context,"Login Successful!!", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener(
-                context
-            ) { exception -> Log.e("Login", "signInAnonymously:FAILURE", exception) }
-    }
-
-    /**
-     * delete anonymously user
-     *
-     * @param None
-     * @return None
-     */
-    fun deleteUser(){
-        try{
-            user?.delete()
-        }catch (e : Exception){
-            Log.e("Logout", "Error is Occur :" + e.printStackTrace())
-        }
-
-    }
 
     /**
      * after make file path list sort urls in list
@@ -129,7 +74,7 @@ class FireBaseAuth constructor(var path: String, var context: AppCompatActivity)
      * @param urls urls list
      * @return Arraylist list return to sorting list
      */
-    fun sortUrls(urls : ArrayList<String>):ArrayList<String>{
+    private fun sortUrls(urls : ArrayList<String>):ArrayList<String>{
         val map = phaseFilename(urls)
         return map.values.toList() as ArrayList<String>
     }

@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.ccu.kyapp.auth.FireBaseAuth
+import com.ccu.kyapp.auth.FireBaseDownload
 import kotlinx.android.synthetic.main.activity_admission.*
 
 /**
@@ -28,7 +28,7 @@ class AdmissionActivity : AppCompatActivity() {
     /*
     auth firebase and download
      */
-    private val auth : FireBaseAuth = FireBaseAuth("admission_pdf/subject_info.pdf", this)
+    private val download : FireBaseDownload = FireBaseDownload("admission_pdf/subject_info.pdf", this)
     /*
     toggle layout
      */
@@ -115,7 +115,7 @@ class AdmissionActivity : AppCompatActivity() {
         }
         relativeLayout_subject_info.setOnClickListener{
             val intent:Intent = Intent(Intent.ACTION_VIEW)
-            pdfOpener.openPdf(intent,auth.uri)
+            pdfOpener.openPdf(intent,download.uri)
         }
 
     }
@@ -131,7 +131,7 @@ class AdmissionActivity : AppCompatActivity() {
         Log.d("Home", "id :"+ R.id.home)
         when(item.itemId){
             android.R.id.home -> {finish()
-                auth.deleteUser()
+                download.deleteUser()
                 return true}
             else ->{
                 Log.e("BackButton","Cant find ID")
@@ -141,7 +141,7 @@ class AdmissionActivity : AppCompatActivity() {
     }
     override fun onStart() {
         super.onStart()
-        auth.downloadToFirebase()
+        download.downloadToFirebase()
     }
 
     /**
