@@ -12,29 +12,38 @@ import java.lang.Exception
 
 
 open class FirebaseService : JobIntentService() {
-     val mStorageRef: StorageReference?
+
+    val mStorageRef: StorageReference?
         get(){
             return FirebaseStorage.getInstance().reference
         }
-     val mAuth : FirebaseAuth
+     private val mAuth : FirebaseAuth
         get(){
             return FirebaseAuth.getInstance()
         }
-     val user : FirebaseUser?
+     private val user : FirebaseUser?
         get(){
             return mAuth.currentUser
         }
     companion object{
         const val TAG = "AuthService"
         const val JOB_ID = 1001
+        const val IMAGE_DOWNLOADING = "background_downloading"
+        const val FILE_DOWNLOADING = "file_downloading"
+
     }
     fun enqueueWork(context: Context, work : Intent){
-        enqueueWork(context, FirebaseService::class.java, JOB_ID, work)
+        enqueueWork(context, this::class.java, JOB_ID, work)
     }
 
 
     override fun onHandleWork(intent: Intent) {
         signInAnonymously()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        deleteUser()
     }
 
     /**

@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.ccu.kyapp.auth.FireBaseDownload
+import com.ccu.kyapp.auth.FirebaseDownloader
 import kotlinx.android.synthetic.main.activity_admission.*
 
 /**
@@ -28,7 +28,7 @@ class AdmissionActivity : AppCompatActivity() {
     /*
     auth firebase and download
      */
-    private val download : FireBaseDownload = FireBaseDownload("admission_pdf/subject_info.pdf", this)
+    private val download : FirebaseDownloader = FirebaseDownloader("admission_pdf/subject_info.pdf")
     /*
     toggle layout
      */

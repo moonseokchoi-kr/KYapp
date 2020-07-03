@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.ccu.kyapp.auth.FireBaseDownload
+import com.ccu.kyapp.auth.FirebaseDownloader
 import kotlinx.android.synthetic.main.activity_school.*
 
 /**
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_school.*
 class SchoolActivity : AppCompatActivity() {
     private val pdf : PdfOpener =
         PdfOpener(this)
-    private val download : FireBaseDownload = FireBaseDownload( "promote_pdf/prime_promote.pdf", this)
+    private val download : FirebaseDownloader = FirebaseDownloader( "promote_pdf/prime_promote.pdf")
     /*
     set external pdf viewer
      */

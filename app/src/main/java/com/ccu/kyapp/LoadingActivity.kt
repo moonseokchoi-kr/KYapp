@@ -1,18 +1,17 @@
 package com.ccu.kyapp
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenCreated
-import androidx.lifecycle.whenStarted
-import com.ccu.kyapp.auth.FireBaseDownload
+import com.ccu.kyapp.auth.FirebaseDownloader
+import com.ccu.kyapp.auth.FirebaseService.Companion.IMAGE_DOWNLOADING
 import kotlinx.android.synthetic.main.activity_progress.*
-import kotlinx.coroutines.*
-import java.lang.ClassCastException
+import java.lang.Exception
 
 /**
  *  before loading something to page, this page is actual loading content
@@ -24,6 +23,7 @@ import java.lang.ClassCastException
  *  @since 2020.06.25
  */
 class LoadingActivity : AppCompatActivity() {
+    lateinit var it : Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class LoadingActivity : AppCompatActivity() {
         /*
         set intent previous page
          */
-        var it : Intent = intent
+        it  = intent
         /*
         set string name of major
          */
@@ -39,20 +39,44 @@ class LoadingActivity : AppCompatActivity() {
         /*
         set auth firebase
          */
-        val download : FireBaseDownload = FireBaseDownload(major!!,this)
+        val downloader  = FirebaseDownloader(major)
+        downloader.enqueueWork(this, Intent().setAction(IMAGE_DOWNLOADING))
+        it = Intent(this, MajorIntroActivity::class.java)
         /*
         loading view
          */
         ProgressBar.visibility= View.VISIBLE
-        it = Intent(this, MajorIntroActivity::class.java)
+        registerReceiver(downloadReceiver, IntentFilter(IMAGE_DOWNLOADING))
+
         /*
         load img to firebase
         todo change the download task for firebase
          */
 
-
     }
 
+    override fun onResume() {
+        super.onResume()
+        registerReceiver(downloadReceiver, IntentFilter())
+    }
+
+    override fun onPause() {
+        super.onPause()
+        try{
+            unregisterReceiver(downloadReceiver)
+        }catch (e:Exception){
+
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        try{
+            unregisterReceiver(downloadReceiver)
+        }catch (e:Exception){
+
+        }
+    }
     /**
      * don't active back Button
      *
@@ -63,5 +87,15 @@ class LoadingActivity : AppCompatActivity() {
 
     }
 
+   private val downloadReceiver : BroadcastReceiver = object:BroadcastReceiver(){
+       override fun onReceive(context: Context?, intent: Intent?) {
+           if(intent?.extras != null){
+               Log.d("broadCast", "broadcasting")
+               it.putExtra("Urls", intent.extras!!.getStringArrayList("Urls"))
+               startActivity(it)
+           }
 
+       }
+
+   }
 }
