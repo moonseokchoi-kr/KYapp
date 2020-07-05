@@ -38,11 +38,12 @@ class FireBaseAuth constructor(private val path: String, private val context: Ap
         get(){
             return mAuth.currentUser
         }
-
     /*
     save the uri
      */
     lateinit var uri : Uri
+    var size = 0
+    var count = 0
     var admission : ArrayList<String> = ArrayList()
     /**
      * make path list of image files at firebase storage
@@ -51,22 +52,28 @@ class FireBaseAuth constructor(private val path: String, private val context: Ap
      * @return None
      */
     fun makePathList () : ArrayList<String>{
+
         val uris = ArrayList<String>()
-            mStorageRef?.child("/$path")?.listAll()?.addOnSuccessListener { it ->
-                it.items.forEach { it ->
-                    it.downloadUrl.addOnSuccessListener(context) {
-                        Log.d("image uri","$it")
-                        val url = it.toString()
-                        uris.add(url)
-                        Log.d("Count of uris", "${uris.size}")
-                    }.addOnFailureListener{
-                        Log.e("Error","FireBase Failure")
-                    }
+        mStorageRef?.child("/$path")?.listAll()?.addOnSuccessListener { it ->
+            size = it.items.size
+            it.items.forEach { it ->
+                it.downloadUrl.addOnSuccessListener(context) {
+                    Log.d("image uri","$it")
+                    val url = it.toString()
+                    uris.add(url)
+                    count++
+                    Log.d("Count of uris", "$count")
+                }.addOnFailureListener{
+                    Log.e("Error","FireBase Failure")
                 }
+
             }
+
+        }
 
         return uris
     }
+
 
     /**
      * downloading to file at firebase storage like pdf, image
@@ -139,12 +146,12 @@ class FireBaseAuth constructor(private val path: String, private val context: Ap
             Log.d("phase url", matchResult!!.value)
             if(matchResult!!.value == "2F"){
                 admission.add(url)
-                admission.sort()
                 continue
             }
             val index = Integer.parseInt(matchResult!!.value.replace("2F",""))
             map[index] = url
         }
+        admission.sort()
         val sortMap : MutableMap<Int,String> = LinkedHashMap<Int,String>()
         map.keys.sorted().forEach{ sortMap[it] = map[it]!!}
         return sortMap

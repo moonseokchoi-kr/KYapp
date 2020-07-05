@@ -1,6 +1,7 @@
 package com.ccu.kyapp
 
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,9 +11,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenCreated
 import androidx.lifecycle.whenStarted
 import com.ccu.kyapp.auth.FireBaseAuth
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_progress.*
 import kotlinx.coroutines.*
 import java.lang.ClassCastException
+import kotlin.coroutines.CoroutineContext
 
 /**
  *  before loading something to page, this page is actual loading content
@@ -25,58 +28,58 @@ import java.lang.ClassCastException
  */
 class LoadingActivity : AppCompatActivity() {
 
+    lateinit var urls : ArrayList<String>
+    private lateinit var itent : Intent
+    /*
+      set auth firebase
+       */
+    private lateinit var auth : FireBaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
+        ProgressBar_pdf.visibility= View.VISIBLE
         /*
         set intent previous page
          */
-        var it : Intent = intent
+        itent = intent
         /*
         set string name of major
          */
-        val major = it.getStringExtra("major")
-        val selcetor = it.getStringExtra("select")
-        /*
-        set auth firebase
-         */
-        val auth : FireBaseAuth = FireBaseAuth(major!!,this)
+        val major = itent.getStringExtra("major")
+
+
+        auth = FireBaseAuth(major,this)
+        urls = auth.makePathList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
         /*
         loading view
          */
-        ProgressBar_pdf.visibility= View.VISIBLE
-        it = Intent(this, MajorIntroActivity::class.java)
+        itent = Intent(this, MajorIntroActivity::class.java)
+        val selector = itent.getStringExtra("select")
         /*
         load img to firebase
         todo change the download task for firebase
          */
-        lifecycleScope.launch{
-            whenCreated {
-                try{
-                    val urls = withContext(this.coroutineContext) {
-                        auth.makePathList()
-
-                    }
-                    delay(1500)
-                    val sortUrls = auth.sortUrls(urls)
-                    when(selcetor){
-                        "major" -> it.putExtra("Urls",sortUrls )
-                        "admission" -> {it.putExtra("Urls", auth.admission)
-                        Log.d("admission url",auth.admission.toString())}
-                        else -> 0
-                    }
-                }catch(e:ClassCastException){
-                    Toast.makeText(applicationContext,"Check the Internet Connection",Toast.LENGTH_LONG).show()
+        try{
+            if(auth.count == auth.size){
+                auth.sortUrls(urls)
+                when(selector){
+                    "major" -> itent.putExtra("Urls",urls)
+                    "admission" -> itent.putExtra("Urls",urls)
                 }
+                startActivity(itent)
+            }
 
-            }
-            whenStarted {
-                startActivity(it)
-            }
         }
-
+        catch(e:ClassCastException) {
+            Toast.makeText(applicationContext, "Check the Internet Connection", Toast.LENGTH_LONG)
+                .show()
+        }
     }
-
     /**
      * don't active back Button
      *
@@ -86,6 +89,5 @@ class LoadingActivity : AppCompatActivity() {
     override fun onBackPressed() {
 
     }
-
 
 }
