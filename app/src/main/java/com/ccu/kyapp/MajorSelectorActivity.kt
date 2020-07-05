@@ -1,5 +1,6 @@
 package com.ccu.kyapp
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_major_select.*
 
 /**
@@ -15,7 +17,8 @@ import kotlinx.android.synthetic.main.activity_major_select.*
  * click major component set string in intent
  *
  * @author Moonseok Choi
- * @version 1.0 make major component and set click event
+ * @version 0.1 make major component and set click event
+ * @version 0.2 add click cell function to videoID at database
  * @since 2020.06.26
  */
 class MajorSelectorActivity : AppCompatActivity() {
@@ -81,7 +84,21 @@ class MajorSelectorActivity : AppCompatActivity() {
         if(major == null)
             return
         intent.putExtra("major", major)
-        startActivity(intent)
+        var videoID = ""
+        val database = FirebaseFirestore.getInstance()
+        database.collection("major").get().addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                task.result?.forEach {
+                    if(it.id == major){
+                        videoID = it.data["videoID"].toString()
+                        intent.putExtra("videoID",videoID)
+                        startActivity(intent)
+                    }
+                }
+            }else
+                Log.w(ContentValues.TAG, "Error getting documents.", task.exception);
+        }
+
     }
 
 

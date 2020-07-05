@@ -11,8 +11,16 @@ import android.view.MenuItem
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenCreated
+import androidx.lifecycle.whenStarted
 import androidx.viewpager2.widget.ViewPager2
+import com.ccu.kyapp.auth.FireBaseAuth
 import kotlinx.android.synthetic.main.activity_major.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * class : MajorActivity
@@ -22,13 +30,14 @@ import kotlinx.android.synthetic.main.activity_major.*
  * @author MoonSeok Choi
  * @version 0.1 set major view and click event
  * @version 0.2 change the major view using ViewPager and TabLayout
+ * @version 0.3 videoplayer connect to data base
  * @see None
  * @since 2020.06.26
  *
  */
 class MajorActivity : AppCompatActivity() {
     /* this map is matches string previous view*/
-    private val majorMap : Map<String, String> = mapOf("software" to "기업소프트웨어학과",
+    private val majorMap : Map<String?, String> = mapOf("software" to "기업소프트웨어학과",
         "clinical" to "임상의약학과", "extinguish" to "재난안전소방학과",
         "security" to "사이버보안공학과", "machine" to "융합기계공학과",
         "beauty" to "글로벌의료뷰티학과", "it" to "융합IT학과",
@@ -39,6 +48,8 @@ class MajorActivity : AppCompatActivity() {
      */
     private val transition : LayoutTransition = LayoutTransition()
     private var isOpen = false
+    private val auth = FireBaseAuth("",this)
+    private var major : String? = null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,11 +59,10 @@ class MajorActivity : AppCompatActivity() {
         setContentView(R.layout.activity_major)
         /* set intent previous page*/
         var intent = intent
-        Log.d("Admission url" , "${intent.getStringArrayListExtra("Admission")}")
-        val major  = intent.getStringExtra("major")
+
+        major = intent.getStringExtra("major")
         //Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         /* set adapter for view page ImagePagerUri is adapter for ViewPager2*/
-        YouTubePlayerView_major.play("EMFqPjAs5Ak")
         textView_toolbarText.text = majorMap[major]
         /* using toolbar*/
         val tb = Toolbar_major
@@ -61,7 +71,7 @@ class MajorActivity : AppCompatActivity() {
         /*add back button toolbar*/
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.setDisplayShowTitleEnabled(false)
-
+        YouTubePlayerView_major.play(intent.getStringExtra("videoID"))
         relativeLayout_intro.setOnClickListener{
             Log.d("click intro ", "Click!!")
             intent = Intent(this, LoadingActivity::class.java)
@@ -69,14 +79,13 @@ class MajorActivity : AppCompatActivity() {
             intent.putExtra("select", "major")
             startActivity(intent)
         }
-        if(intent.getStringArrayListExtra("Admission") != null){
-            relativeLayout_admission.setOnClickListener{
+        relativeLayout_admission.setOnClickListener{
                 intent = Intent(this, LoadingActivity::class.java)
                 intent.putExtra("major",major)
                 intent.putExtra("select","admission")
                 startActivity(intent)
-            }
         }
+
         relativeLayout_video.setOnClickListener {
             transition.addChild(scrollView_video, linearLayout_video)
 

@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.activity_school.*
  * introduce school information page
  *
  * @author Moonseok Choi
- * @version 1.0 make view and set event
+ * @version 0.1 make view and set event
+ * @version 0.2 change the videoID
  */
 class SchoolActivity : AppCompatActivity() {
     private val pdf : PdfOpener =
@@ -25,6 +26,7 @@ class SchoolActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_school)
+        YouTubePlayerView_major.play("7DMAP3p62RA")
         val tb = Toolbar_school
         setSupportActionBar(tb)
         val ab = supportActionBar
@@ -37,7 +39,7 @@ class SchoolActivity : AppCompatActivity() {
 
     override fun onStart(){
         super.onStart()
-        YouTubePlayerView_major.play("7DMAP3p62RA")
+
         /*
         download pdf file to fire base
          */

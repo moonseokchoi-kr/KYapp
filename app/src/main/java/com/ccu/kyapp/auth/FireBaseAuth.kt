@@ -38,7 +38,7 @@ class FireBaseAuth constructor(private val path: String, private val context: Ap
         get(){
             return mAuth.currentUser
         }
-    val database = FirebaseFirestore.getInstance()
+
     /*
     save the uri
      */
@@ -138,8 +138,8 @@ class FireBaseAuth constructor(private val path: String, private val context: Ap
             val matchResult = reg.find(url)
             Log.d("phase url", matchResult!!.value)
             if(matchResult!!.value == "2F"){
-                //admission.add(url)
-                //admission.sort()
+                admission.add(url)
+                admission.sort()
                 continue
             }
             val index = Integer.parseInt(matchResult!!.value.replace("2F",""))
@@ -150,20 +150,4 @@ class FireBaseAuth constructor(private val path: String, private val context: Ap
         return sortMap
     }
 
-    /**
-     * read youtubeID to firebase database
-     */
-    fun readVideoID(major:String) : String{
-        var videoID = ""
-
-        database.collection("major").get().addOnCompleteListener { task ->
-            if(task.isSuccessful){
-                task.result?.forEach {
-                    Log.d(TAG, it.id+"=>"+it.data)
-                }
-            }else
-                Log.w(TAG, "Error getting documents.", task.exception);
-        }
-        return videoID
-    }
 }

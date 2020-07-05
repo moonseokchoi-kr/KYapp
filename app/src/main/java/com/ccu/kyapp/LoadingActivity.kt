@@ -20,6 +20,7 @@ import java.lang.ClassCastException
  *  @author MoonSeok Choi
  *  @version 0.1 loading img to firebase
  *  @version 0.2 change code load to firebase
+ *  @version 0.3 add admission information load to fire base
  *  @since 2020.06.25
  */
 class LoadingActivity : AppCompatActivity() {
@@ -56,10 +57,12 @@ class LoadingActivity : AppCompatActivity() {
                         auth.makePathList()
 
                     }
-                    delay(1000)
+                    delay(1500)
+                    val sortUrls = auth.sortUrls(urls)
                     when(selcetor){
-                        "major" -> it.putExtra("Urls", auth.sortUrls(urls))
-                        "admission" -> it.putExtra("Urls", auth.admission)
+                        "major" -> it.putExtra("Urls",sortUrls )
+                        "admission" -> {it.putExtra("Urls", auth.admission)
+                        Log.d("admission url",auth.admission.toString())}
                         else -> 0
                     }
                 }catch(e:ClassCastException){
