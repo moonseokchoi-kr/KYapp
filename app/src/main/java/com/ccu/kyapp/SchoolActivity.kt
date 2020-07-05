@@ -5,19 +5,21 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.ccu.kyapp.auth.FirebaseDownloader
+import com.ccu.kyapp.auth.FireBaseAuth
 import kotlinx.android.synthetic.main.activity_school.*
 
 /**
  * introduce school information page
  *
  * @author Moonseok Choi
- * @version 1.0 make view and set event
+ * @version 0.1 make view and set event
+ * @version 0.2 change the videoID
  */
 class SchoolActivity : AppCompatActivity() {
     private val pdf : PdfOpener =
         PdfOpener(this)
-    private val download : FirebaseDownloader = FirebaseDownloader( "promote_pdf/prime_promote.pdf")
+
+    private val auth : FireBaseAuth = FireBaseAuth( "school/promotion.pdf", this)
     /*
     set external pdf viewer
      */
@@ -25,23 +27,24 @@ class SchoolActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_school)
+        YouTubePlayerView_major.play("7DMAP3p62RA")
         val tb = Toolbar_school
         setSupportActionBar(tb)
         val ab = supportActionBar
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.setDisplayShowTitleEnabled(false)
         RelativeLayout_pdf.setOnClickListener {
-            pdf.openPdf(pdfChooser,download.uri)
+            pdf.openPdf(pdfChooser,auth.uri)
         startActivity(pdfChooser)}
     }
 
     override fun onStart(){
         super.onStart()
-        YouTubePlayerView_major.play("UTx1igNpTpk")
+
         /*
         download pdf file to fire base
          */
-        download.downloadToFirebase()
+        auth.downloadToFirebase()
     }
     /**
      * when touch the back button on toolbar move to previous page
@@ -54,7 +57,7 @@ class SchoolActivity : AppCompatActivity() {
         Log.d("Home", "id :"+ R.id.home)
         when(item.itemId){
             android.R.id.home -> {finish()
-                download.deleteUser()
+                auth.deleteUser()
                 return true}
             else ->{
                 Log.e("BackButton","Cant find ID")

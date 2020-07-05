@@ -50,7 +50,6 @@
             android:background="@drawable/btn_main"
             >
             <TextView
-                android:id="@+id/textView_intro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="학과소개"
@@ -82,7 +81,6 @@
             android:background="@drawable/btn_main"
             >
             <TextView
-                android:id="@+id/textView_video"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="학과 홍보 동영상"
@@ -141,7 +139,6 @@
             android:background="@drawable/btn_main"
             >
             <TextView
-                android:id="@+id/textView_admission"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="학과 모집 요강"
@@ -159,7 +156,6 @@
                 />
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/relativeLayout_greeting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -173,7 +169,6 @@
             android:background="@drawable/btn_main"
             >
             <TextView
-                android:id="@+id/textView_greeting"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="학과장 인사말"
