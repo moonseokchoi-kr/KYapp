@@ -1,16 +1,16 @@
 package com.ccu.kyapp.auth
 
+import android.content.ContentValues.TAG
 import android.net.Uri
-import android.os.Build
+
 import android.util.Log
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.*
 import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
@@ -24,7 +24,7 @@ import kotlin.collections.ArrayList
  *  @since 2020.06.25
  */
 
-class FireBaseAuth constructor(var path: String, var context: AppCompatActivity){
+class FireBaseAuth constructor(private val path: String, private val context: AppCompatActivity){
 
     private val mStorageRef: StorageReference?
         get(){
@@ -38,11 +38,12 @@ class FireBaseAuth constructor(var path: String, var context: AppCompatActivity)
         get(){
             return mAuth.currentUser
         }
+    val database = FirebaseFirestore.getInstance()
     /*
     save the uri
      */
     lateinit var uri : Uri
-    //var admission : ArrayList<String> = ArrayList()
+    var admission : ArrayList<String> = ArrayList()
     /**
      * make path list of image files at firebase storage
      * certify use [signInAnonymously]
@@ -51,7 +52,6 @@ class FireBaseAuth constructor(var path: String, var context: AppCompatActivity)
      */
     fun makePathList () : ArrayList<String>{
         val uris = ArrayList<String>()
-        if(user != null){
             mStorageRef?.child("/$path")?.listAll()?.addOnSuccessListener { it ->
                 it.items.forEach { it ->
                     it.downloadUrl.addOnSuccessListener(context) {
@@ -64,11 +64,7 @@ class FireBaseAuth constructor(var path: String, var context: AppCompatActivity)
                     }
                 }
             }
-        }
-        else{
-            signInAnonymously()
-            makePathList()
-        }
+
         return uris
     }
 
@@ -80,16 +76,11 @@ class FireBaseAuth constructor(var path: String, var context: AppCompatActivity)
      * @return None
      */
     fun downloadToFirebase(){
-        if(user != null){
             mStorageRef?.child(path)?.downloadUrl
                 ?.addOnSuccessListener { uri = it
                     Log.d("downLoad Uri", "uri :$uri")
                 }
                 ?.addOnFailureListener{ Log.e("Error" , "URLDownload Failure:Firebase") }
-        }else{
-            signInAnonymously();
-            downloadToFirebase()
-        }
     }
 
     /**
@@ -159,5 +150,20 @@ class FireBaseAuth constructor(var path: String, var context: AppCompatActivity)
         return sortMap
     }
 
+    /**
+     * read youtubeID to firebase database
+     */
+    fun readVideoID(major:String) : String{
+        var videoID = ""
 
+        database.collection("major").get().addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                task.result?.forEach {
+                    Log.d(TAG, it.id+"=>"+it.data)
+                }
+            }else
+                Log.w(TAG, "Error getting documents.", task.exception);
+        }
+        return videoID
+    }
 }

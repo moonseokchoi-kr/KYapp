@@ -30,7 +30,6 @@
     </androidx.appcompat.widget.Toolbar>
 
     <TableLayout
-        android:id="@+id/tableLayout_selector"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -61,7 +60,6 @@
                     android:src="@drawable/iconfinder_software" />
 
                 <TextView
-                    android:id="@+id/textView_school"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_software"
@@ -94,7 +92,6 @@
                     android:src="@drawable/iconfinder_clinical" />
 
                 <TextView
-                    android:id="@+id/textView_clinical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_clinical"
@@ -127,7 +124,6 @@
                     android:src="@drawable/iconfinder_extinguish" />
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_extinguish"
@@ -165,7 +161,6 @@
                     android:src="@drawable/iconfinder_security" />
 
                 <TextView
-                    android:id="@+id/textView_security"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_security"
@@ -198,7 +193,6 @@
                     android:src="@drawable/iconfinder_machine" />
 
                 <TextView
-                    android:id="@+id/textView_machine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_machine"
@@ -231,7 +225,6 @@
                     android:src="@drawable/iconfinder_beauty" />
 
                 <TextView
-                    android:id="@+id/textView_beauty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_beauty"
@@ -269,7 +262,6 @@
                     android:src="@drawable/iconfinder_code" />
 
                 <TextView
-                    android:id="@+id/textView_it"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_it"
@@ -302,7 +294,6 @@
                     android:src="@drawable/iconfinder_bio" />
 
                 <TextView
-                    android:id="@+id/textView_bio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_bio"
@@ -335,7 +326,6 @@
                     android:src="@drawable/iconfinder_globe" />
 
                 <TextView
-                    android:id="@+id/textView_gfs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_gfs"
@@ -373,7 +363,6 @@
                     android:src="@drawable/iconfinder_design" />
 
                 <TextView
-                    android:id="@+id/textView_design"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/imageView_design"

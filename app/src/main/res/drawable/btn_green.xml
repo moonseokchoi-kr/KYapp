@@ -16,7 +16,7 @@
     <item android:state_enabled="true">
         <shape android:shape="rectangle">
             <corners  android:radius="20dp"/>
-            <solid android:color="@color/colorKy"/>
+            <solid android:color="@color/topBg"/>
             <padding
                 android:bottom="8dp"
                 android:left="8dp"

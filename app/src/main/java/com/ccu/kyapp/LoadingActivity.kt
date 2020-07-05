@@ -35,6 +35,7 @@ class LoadingActivity : AppCompatActivity() {
         set string name of major
          */
         val major = it.getStringExtra("major")
+        val selcetor = it.getStringExtra("select")
         /*
         set auth firebase
          */
@@ -56,11 +57,13 @@ class LoadingActivity : AppCompatActivity() {
 
                     }
                     delay(1000)
-                    //it.putExtra("Admission", auth.admission)
-                    it.putExtra("Urls", auth.sortUrls(urls))
-                    //it.putExtra("major", major)
+                    when(selcetor){
+                        "major" -> it.putExtra("Urls", auth.sortUrls(urls))
+                        "admission" -> it.putExtra("Urls", auth.admission)
+                        else -> 0
+                    }
                 }catch(e:ClassCastException){
-                    Toast.makeText(applicationContext,"Check the Internet Connection",Toast.LENGTH_LONG)
+                    Toast.makeText(applicationContext,"Check the Internet Connection",Toast.LENGTH_LONG).show()
                 }
 
             }

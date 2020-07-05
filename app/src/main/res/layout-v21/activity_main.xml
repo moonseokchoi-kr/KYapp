@@ -71,7 +71,6 @@
                 app:layout_constraintVertical_weight="5">
 
                 <ImageView
-                    android:id="@+id/imageView_school"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerInParent="true"
@@ -79,7 +78,6 @@
                     android:src="@drawable/iconfinder_school" />
 
                 <TextView
-                    android:id="@+id/textView_school"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -105,7 +103,6 @@
                 app:layout_constraintVertical_weight="5">
 
                 <ImageView
-                    android:id="@+id/imageView_major"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerInParent="true"
@@ -113,7 +110,6 @@
                     android:src="@drawable/iconfinder_copybook" />
 
                 <TextView
-                    android:id="@+id/textView_major"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -152,7 +148,6 @@
                 app:layout_constraintVertical_weight="5">
 
                 <ImageView
-                    android:id="@+id/imageView_admission"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerInParent="true"
@@ -160,7 +155,6 @@
                     android:src="@drawable/iconfinder_education" />
 
                 <TextView
-                    android:id="@+id/textView_admission"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
@@ -172,7 +166,6 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/relativeLayout_community"
                 android:layout_width="165dp"
                 android:layout_height="144dp"
 
@@ -197,7 +190,6 @@
                     android:src="@drawable/iconfinder_crew" />
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/school_image"

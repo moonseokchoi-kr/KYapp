@@ -52,7 +52,7 @@ class MajorActivity : AppCompatActivity() {
         val major  = intent.getStringExtra("major")
         //Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         /* set adapter for view page ImagePagerUri is adapter for ViewPager2*/
-        YouTubePlayerView_major.play("UTx1igNpTpk")
+        YouTubePlayerView_major.play("EMFqPjAs5Ak")
         textView_toolbarText.text = majorMap[major]
         /* using toolbar*/
         val tb = Toolbar_major
@@ -66,9 +66,17 @@ class MajorActivity : AppCompatActivity() {
             Log.d("click intro ", "Click!!")
             intent = Intent(this, LoadingActivity::class.java)
             intent.putExtra("major",major)
+            intent.putExtra("select", "major")
             startActivity(intent)
         }
-
+        if(intent.getStringArrayListExtra("Admission") != null){
+            relativeLayout_admission.setOnClickListener{
+                intent = Intent(this, LoadingActivity::class.java)
+                intent.putExtra("major",major)
+                intent.putExtra("select","admission")
+                startActivity(intent)
+            }
+        }
         relativeLayout_video.setOnClickListener {
             transition.addChild(scrollView_video, linearLayout_video)
 

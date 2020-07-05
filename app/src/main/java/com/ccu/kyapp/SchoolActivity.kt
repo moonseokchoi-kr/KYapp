@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_school.*
 class SchoolActivity : AppCompatActivity() {
     private val pdf : PdfOpener =
         PdfOpener(this)
-    private val auth : FireBaseAuth = FireBaseAuth( "promote_pdf/prime_promote.pdf", this)
+    private val auth : FireBaseAuth = FireBaseAuth( "school/promotion.pdf", this)
     /*
     set external pdf viewer
      */
@@ -37,7 +37,7 @@ class SchoolActivity : AppCompatActivity() {
 
     override fun onStart(){
         super.onStart()
-        YouTubePlayerView_major.play("UTx1igNpTpk")
+        YouTubePlayerView_major.play("7DMAP3p62RA")
         /*
         download pdf file to fire base
          */
