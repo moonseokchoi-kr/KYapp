@@ -66,6 +66,8 @@ class MajorSelectorActivity : AppCompatActivity() {
         data["relativeLayout_beauty"] = "beauty"
         data["relativeLayout_software"] = "software"
         data["relativeLayout_bio"] = "bio"
+        data["relativeLayout_security"] = "security"
+        data["relativeLayout_it"] = "it"
 
         return data
     }

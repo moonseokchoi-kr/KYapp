@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @author MoonSeok Choi
  * @version 1.0
  * @since 2020.6.25
+ * todo change the code RxKotlin and RxAndroid
  */
 
 class MainActivity : AppCompatActivity() {
