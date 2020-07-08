@@ -19,6 +19,9 @@ import kotlinx.android.synthetic.main.activity_admission.*
  * @author ChoiMoonSeok
  * @version 1.0 write script
  * @since 2020.6.26
+ *
+ * todo 1. make UI change auto dpi
+ *
  */
 class AdmissionActivity : AppCompatActivity() {
     /*

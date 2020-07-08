@@ -31,6 +31,7 @@ import java.lang.ClassCastException
  *  @version 0.3 add admission information load to fire base
 >>>>>>> dcd9352ba9edc67dbbd681f8f673e4a71dd4590c
  *  @since 2020.06.25
+ *  todo 2. change the major view using rx library
  */
 class LoadingActivity : AppCompatActivity() {
     private lateinit var itent : Intent
