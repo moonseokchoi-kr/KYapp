@@ -52,7 +52,6 @@ class FireBaseAuth constructor(private val path: String, private val context: Ap
      * @return None
      */
     fun makePathList () : ArrayList<String>{
-
         val uris = ArrayList<String>()
         mStorageRef?.child("/$path")?.listAll()?.addOnSuccessListener { it ->
             size = it.items.size

@@ -1,13 +1,20 @@
 package com.ccu.kyapp
 
+import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenCreated
+import androidx.lifecycle.whenStarted
 import kotlinx.android.synthetic.main.activity_progress.*
 import com.ccu.kyapp.auth.FireBaseAuth
 import com.ccu.kyapp.auth.ImageDownloadTask
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.ClassCastException
 
 
@@ -36,56 +43,43 @@ class LoadingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_progress)
+        var it : Intent = intent
+        val major = it.getStringExtra("major")
+        val selector = it.getStringExtra("select")
+        var auth : FireBaseAuth = FireBaseAuth(major,this)
         ProgressBar.visibility= View.VISIBLE
-        /*
-        set intent previous page
-         */
-        itent = intent
+        it = Intent(this, MajorIntroActivity::class.java)
+        lifecycleScope.launch{
+            whenCreated {
+                val urls = withContext(this.coroutineContext) {
+                    val tmp : ArrayList<String> = auth.makePathList()
+                    delay(2000)
+                    auth.sortUrls(tmp)
+                }
+                when(selector){
+                    "major" -> it.putExtra("Urls", urls)
+                    "admission" -> {
+                        if(auth.admission.isEmpty()){
+                            it.setClass(this@LoadingActivity, AdmissionActivity::class.java)
+                            startActivity(it)
+                        }
+                        it.putExtra("Urls",auth.admission)
+                    }
+                    else -> 0
+                }
+            }
+            whenStarted {
+                delay(300)
+                startActivity(it)
+            }
+        }
 
-        /*
-        set string name of major
-         */
-        val major = itent.getStringExtra("major")
-        /*
-        set auth firebase
-         */
-        itent = Intent(this, MajorIntroActivity::class.java)
-        /*
-        loading view
-         */
-        ProgressBar.visibility= View.VISIBLE
-
-        ImageDownloadTask(urls, admission).execute(major)
-
-        //auth = FireBaseAuth(major,this)
-        //urls = auth.makePathList()
     }
+
 
     override fun onResume() {
         super.onResume()
 
-        /*
-        loading view
-         */
-        itent = Intent(this, MajorIntroActivity::class.java)
-        val selector = itent.getStringExtra("select")
-
-        /*
-        load img to firebase
-        todo change the download task for firebase
-         */
-
-        try{
-                when(selector){
-                    "major" -> itent.putExtra("Urls",urls)
-                    "admission" -> itent.putExtra("Urls",urls)
-                }
-                //startActivity(itent)
-        }
-        catch(e:ClassCastException) {
-            Toast.makeText(applicationContext, "Check the Internet Connection", Toast.LENGTH_LONG)
-                .show()
-        }
     }
     /**
      * don't active back Button

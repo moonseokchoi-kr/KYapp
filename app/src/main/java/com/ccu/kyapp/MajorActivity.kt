@@ -71,7 +71,9 @@ class MajorActivity : AppCompatActivity() {
         /*add back button toolbar*/
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.setDisplayShowTitleEnabled(false)
-        YouTubePlayerView_major.play(intent.getStringExtra("videoID"))
+        if(intent.getStringExtra("videoID") != null)
+            YouTubePlayerView_major.play(intent.getStringExtra("videoID"))
+
         relativeLayout_intro.setOnClickListener{
             Log.d("click intro ", "Click!!")
             intent = Intent(this, LoadingActivity::class.java)

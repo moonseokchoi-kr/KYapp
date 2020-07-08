@@ -28,7 +28,7 @@ class AdmissionActivity : AppCompatActivity() {
     /*
     auth firebase and download
      */
-    private val auth = FireBaseAuth("/promote_pdf/subject_info.pdf",this)
+    private val auth = FireBaseAuth("/admission_pdf/subject_info.pdf",this)
     /*
     toggle layout
      */
