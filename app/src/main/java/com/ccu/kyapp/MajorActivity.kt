@@ -66,7 +66,7 @@ class MajorActivity : AppCompatActivity() {
         /*add back button toolbar*/
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.setDisplayShowTitleEnabled(false)
-        if(intent.getStringExtra("videoID") != null)
+        if(intent.getStringExtra("videoID") != "")
             YouTubePlayerView_major.play(intent.getStringExtra("videoID"))
 
         relativeLayout_intro.setOnClickListener{

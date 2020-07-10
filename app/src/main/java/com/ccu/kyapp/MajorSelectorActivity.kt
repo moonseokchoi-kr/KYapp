@@ -101,8 +101,10 @@ class MajorSelectorActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 }
-            }else
+            }else{
                 Log.w(ContentValues.TAG, "Error getting documents.", task.exception);
+            }
+
         }
 
     }
