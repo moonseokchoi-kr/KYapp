@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
+import androidx.viewpager2.widget.ViewPager2
+import kotlinx.android.synthetic.main.intro_tab.view.*
 import kotlin.math.abs
 
 
@@ -16,19 +18,26 @@ import kotlin.math.abs
  * using pinch zoom function in image view
  */
 class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : AttributeSet? = null, defStyle : Int =0) : androidx.appcompat.widget.AppCompatImageView(context,attrs,defStyle) {
+
     companion object{
+
         private const val NONE = 0;
         private const val DRAG = 1;
         private const val ZOOM = 2;
         private const val CLICK = 3
+        private var mode  = NONE
+        private var state = NONE
+        fun getImageMode() : Int {
+             return mode
+        }
     }
-    private var mode  = NONE
+    private  lateinit var viewPager2 : ViewPager2
     var nMatrix = Matrix()
-    var last = PointF()
-    var start = PointF()
+    private var last = PointF()
+    private var start = PointF()
     var minScale = 1f
     var maxScale = 3f
-    var m: FloatArray = FloatArray(9)
+    private var m: FloatArray = FloatArray(9)
     var viewWidth = 0
     var viewHeight = 0
     var saveScale = 1f
@@ -36,7 +45,7 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
     var origHeight = 0f
     var oldMeasuredWidth = 0
     var oldMeasuredHeight = 0
-    var mGestureDetector :GestureDetector
+    private var mGestureDetector :GestureDetector
     private var mScaleDetector: ScaleGestureDetector
     init{
         imageMatrix = nMatrix
@@ -44,6 +53,7 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
         mScaleDetector = ScaleGestureDetector(context, object:ScaleGestureDetector.SimpleOnScaleGestureListener(){
              override fun onScaleBegin(detector: ScaleGestureDetector?): Boolean {
                  mode = ZOOM
+                 state = ZOOM
                  return true
              }
 
@@ -81,17 +91,20 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
                 val origScale = saveScale
                 val mScaleFactor: Float
 
-                if(saveScale == maxScale){
-                    saveScale = minScale
-                    mScaleFactor = minScale/origScale
-                }else{
+                if(saveScale == minScale){
                     saveScale = maxScale
                     mScaleFactor = maxScale/origScale
+                    state = ZOOM
+                }else{
+                    saveScale = minScale
+                    mScaleFactor = minScale/origScale
+                    state = NONE
                 }
                 nMatrix.postScale(mScaleFactor, mScaleFactor, viewWidth/2.toFloat(), viewHeight/2.toFloat())
                 fixTrans()
                 return true
             }
+
         })
 
     }
@@ -107,16 +120,23 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
                     start.set(last)
                     mode = DRAG
                 }
-                MotionEvent.ACTION_MOVE -> if (mode == DRAG) {
-                    val deltaX = curr.x - last.x
-                    val deltaY = curr.y - last.y
-                    val fixTransX: Float =
-                        getFixDragTrans(deltaX, viewWidth.toFloat(), origWidth * saveScale)
-                    val fixTransY: Float =
-                        getFixDragTrans(deltaY, viewHeight.toFloat(), origHeight * saveScale)
-                    nMatrix.postTranslate(fixTransX, fixTransY)
-                    fixTrans()
-                    last[curr.x] = curr.y
+                MotionEvent.ACTION_MOVE ->{
+                    if (mode == DRAG && state == ZOOM) {
+                        Log.d("mode & state","mode : $mode, state: $state")
+                        val deltaX = curr.x - last.x
+                        val deltaY = curr.y - last.y
+                        val fixTransX: Float =
+                            getFixDragTrans(deltaX, viewWidth.toFloat(), origWidth * saveScale)
+                        val fixTransY: Float =
+                            getFixDragTrans(deltaY, viewHeight.toFloat(), origHeight * saveScale)
+                        nMatrix.postTranslate(fixTransX, fixTransY)
+                        fixTrans()
+                        last[curr.x] = curr.y
+                        viewPager2.isUserInputEnabled = false
+                    }else{
+                        viewPager2.isUserInputEnabled = true
+                    }
+
                 }
                 MotionEvent.ACTION_UP -> {
                     mode = NONE
@@ -124,7 +144,8 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
                     val yDiff = abs(curr.y - start.y).toInt()
                     if (xDiff < CLICK && yDiff < CLICK) performClick()
                 }
-                MotionEvent.ACTION_POINTER_UP -> mode = NONE
+                MotionEvent.ACTION_POINTER_UP -> {mode = NONE
+                }
             }
             imageMatrix = nMatrix
             invalidate()
@@ -132,6 +153,7 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
         }
         return false
     }
+
     fun fixTrans() {
         nMatrix.getValues(m)
         val transX = m[Matrix.MTRANS_X]
@@ -207,6 +229,9 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
             imageMatrix = nMatrix
         }
         fixTrans()
+    }
+    fun setViewPager(viewPager2: ViewPager2){
+        this.viewPager2 = viewPager2
     }
 
 }

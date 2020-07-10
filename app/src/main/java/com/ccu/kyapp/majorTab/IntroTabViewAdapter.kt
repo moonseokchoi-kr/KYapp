@@ -74,7 +74,7 @@ class IntroTabViewAdapter(private val tabItems: Array<TabItem>) : RecyclerView.A
 class IntroViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView) {
     private val imgSlider : ViewPager2 = itemView.findViewById(R.id.viewPager2_major)
     fun bind (position: Int, tabItems: Array<TabItem>){
-        imgSlider.adapter = ImagePagerUri(tabItems[position].getContent()as List<String>)
+        imgSlider.adapter = ImagePagerUri(tabItems[position].getContent()as List<String>, imgSlider)
     }
 }
 
@@ -102,7 +102,7 @@ class VideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 class AdmissionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     private val imgSlider : ViewPager2 = itemView.findViewById(R.id.viewPager2_admission)
     fun bind(position: Int, tabItems: Array<TabItem>){
-        imgSlider.adapter = ImagePagerUri(tabItems[position].getContent()as List<String>)
+        imgSlider.adapter = ImagePagerUri(tabItems[position].getContent()as List<String>,imgSlider)
     }
 
 }

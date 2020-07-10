@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.ccu.kyapp.R
 
@@ -20,7 +21,7 @@ import com.ccu.kyapp.R
  * @version 0.1 create adapter and write override function
  * @since 2020.06.30
  */
-class ImagePagerUri(private val imgPathList: List<String>) : RecyclerView.Adapter<ImagePagerViewHolder>(){
+class ImagePagerUri(private val imgPathList: List<String> , private val viewPager2 : ViewPager2) : RecyclerView.Adapter<ImagePagerViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagePagerViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.image_slider,parent,false)
@@ -32,7 +33,7 @@ class ImagePagerUri(private val imgPathList: List<String>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ImagePagerViewHolder, position: Int) {
-        holder.bind(imgPathList[position])
+        holder.bind(imgPathList[position],viewPager2)
     }
 }
 
@@ -47,7 +48,8 @@ class ImagePagerUri(private val imgPathList: List<String>) : RecyclerView.Adapte
 class ImagePagerViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
 
     private val imgView : PinchZoomImageView = itemView.findViewById(R.id.imageView_slider)
-    fun bind (imgPath: String){
+    fun bind (imgPath: String, viewPager2: ViewPager2){
+        imgView.setViewPager(viewPager2)
         Log.d("imgView", "Load: $imgPath")
         Glide.with(itemView).load(imgPath).into(imgView)
     }
