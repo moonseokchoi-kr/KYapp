@@ -3,12 +3,13 @@ package com.ccu.kyapp.majorImage
 import android.content.Context
 import android.graphics.Matrix
 import android.graphics.PointF
-import android.graphics.Rect
 import android.util.AttributeSet
 import android.util.Log
+import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
 import kotlin.math.abs
+
 
 
 /**
@@ -26,7 +27,7 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
     var last = PointF()
     var start = PointF()
     var minScale = 1f
-    var maxScale = 10f
+    var maxScale = 3f
     var m: FloatArray = FloatArray(9)
     var viewWidth = 0
     var viewHeight = 0
@@ -35,6 +36,7 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
     var origHeight = 0f
     var oldMeasuredWidth = 0
     var oldMeasuredHeight = 0
+    var mGestureDetector :GestureDetector
     private var mScaleDetector: ScaleGestureDetector
     init{
         imageMatrix = nMatrix
@@ -74,10 +76,28 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
                 return false
             }
          })
+        mGestureDetector = GestureDetector(context,object: GestureDetector.SimpleOnGestureListener(){
+            override fun onDoubleTap(e: MotionEvent?): Boolean {
+                val origScale = saveScale
+                val mScaleFactor: Float
+
+                if(saveScale == maxScale){
+                    saveScale = minScale
+                    mScaleFactor = minScale/origScale
+                }else{
+                    saveScale = maxScale
+                    mScaleFactor = maxScale/origScale
+                }
+                nMatrix.postScale(mScaleFactor, mScaleFactor, viewWidth/2.toFloat(), viewHeight/2.toFloat())
+                fixTrans()
+                return true
+            }
+        })
 
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+        mGestureDetector.onTouchEvent(event)
         mScaleDetector.onTouchEvent(event)
         if(event != null){
             val curr = PointF(event.x, event.y)
@@ -87,7 +107,7 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
                     start.set(last)
                     mode = DRAG
                 }
-                MotionEvent.ACTION_MOVE -> if (mode === DRAG) {
+                MotionEvent.ACTION_MOVE -> if (mode == DRAG) {
                     val deltaX = curr.x - last.x
                     val deltaY = curr.y - last.y
                     val fixTransX: Float =
@@ -172,7 +192,7 @@ class PinchZoomImageView @JvmOverloads constructor(context: Context, attrs : Att
             Log.d("bmSize", "bmWidth: $bmWidth bmHeight : $bmHeight")
             val scaleX = viewWidth.toFloat() / bmWidth.toFloat()
             val scaleY = viewHeight.toFloat() / bmHeight.toFloat()
-            scale = Math.min(scaleX, scaleY)
+            scale = scaleX.coerceAtMost(scaleY)
             nMatrix.setScale(scale, scale)
             // Center the image
             var redundantYSpace =
