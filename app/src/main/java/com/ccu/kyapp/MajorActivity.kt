@@ -48,20 +48,15 @@ class MajorActivity : AppCompatActivity() {
      */
     private val transition : LayoutTransition = LayoutTransition()
     private var isOpen = false
-    private val auth = FireBaseAuth("",this)
     private var major : String? = null
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewPager = ViewPager2(this).apply{
-            parent
-        }
         setContentView(R.layout.activity_major)
         /* set intent previous page*/
         var intent = intent
 
         major = intent.getStringExtra("major")
-        //Log.d("Count of Url", intent.getStringArrayListExtra("Urls").size.toString())
         /* set adapter for view page ImagePagerUri is adapter for ViewPager2*/
         textView_toolbarText.text = majorMap[major]
         /* using toolbar*/
