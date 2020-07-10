@@ -37,7 +37,6 @@
         <activity android:name=".MajorIntroActivity"
             android:noHistory="true">
         </activity>
-        <service android:name=".auth.FirebaseDownloader" android:permission="android.permission.BIND_JOB_SERVICE"/>
 
     </application>
 
