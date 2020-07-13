@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KY App</string>
+    <string name="app_name">Prime 창의융합대학</string>
     <string name="fusionit_intro_text">건양대는 교육부의 2단계 산학협력 선도대학(LNC) 사업, 2014 학부교육 선도대학(ACE) 육성사업, 대학 특성화(CK) 사업에 이어 2016년에 선정된 프라임(PRIME) 사업을 통하여 사회에서 수요가 있는 학과를 신설 및 증원하되 각 기업들이 요청한 인재수준에 맞는 커리큘럼을 완수해 취업을 예약하는 예약학과 시스템을 만들고, 이들 학과들은 창의융합대학을 확대하여 만든 PRIME창의융합대학에 속하여 1년 10학기제, 프로젝트식 수업을 진행하게 됩니다.</string>
     <string name="region">지역인재전형\n</string>
     <string name="region_type">학생부 교과 100% \n 모집인원 171명\n</string>
@@ -12,4 +12,14 @@
     <string name="ex_type">1단계: 특기실적 100% (4배수) \n 2단계: 1단계 60% + 면접 40% \n 특기자 전형 모집인원 30명\n 창업특기자 전형 모집인원 2명</string>
     <string name="ex_normal">일반학생전형(실기)</string>
     <string name="ex_normal_type">학생부 교과 40% + 전공실기 60% \n 모집인원 30명 \n</string>
+    <string name="security">사이버\n보안공학과</string>
+    <string name="extinguish">재난\n안전소방학과</string>
+    <string name="clinical">임상의약학과</string>
+    <string name="software">기업소프트웨어</string>
+    <string name="machine">융합기계공학과</string>
+    <string name="beauty">글로벌\n의료뷰티학과</string>
+    <string name="it">융합IT학과</string>
+    <string name="bio">의약바이오학과</string>
+    <string name="gfs">글로벌\n프론티어학과</string>
+    <string name="design">융합디자인학과</string>
 </resources>

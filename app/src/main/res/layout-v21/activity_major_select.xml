@@ -32,24 +32,31 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_margin="12dp"
-        >
+        android:gravity="center">
+
         <TableRow
-            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            >
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
             <RelativeLayout
-                android:tag="relativeLayout_software"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_height"
                 android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/btn_main"
                 android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
                 android:onClick="clickHandlerCell"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:tag="relativeLayout_software"
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/imageView_software"
@@ -66,22 +73,25 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_main"
+                    android:textAlignment="center"
                     android:padding="1dp"
-                    android:textSize="12sp"
-                    android:text="기업소프트웨어" />
+                    android:text="@string/software"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
+
             <RelativeLayout
-                android:tag="relativeLayout_clinical"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_width"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/btn_main"
                 android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
                 android:onClick="clickHandlerCell"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:tag="relativeLayout_clinical"
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/imageView_clinical"
@@ -99,21 +109,23 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_main"
                     android:padding="1dp"
-                    android:textSize="12sp"
-                    android:text="임상의약학과" />
+                    android:text="@string/clinical"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
+
             <RelativeLayout
-                android:tag="relativeLayout_extinguish"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_width"
                 android:layout_marginEnd="8dp"
+                android:background="@drawable/btn_main"
                 android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
                 android:onClick="clickHandlerCell"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:tag="relativeLayout_extinguish"
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/imageView_extinguish"
@@ -129,28 +141,37 @@
                     android:layout_alignBottom="@id/imageView_extinguish"
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"
+                    android:textAlignment="center"
                     android:background="@drawable/btn_main"
                     android:padding="1dp"
-                    android:textSize="12sp"
-                    android:text="재난안전소방학과" />
+                    android:text="@string/extinguish"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
+
+
         </TableRow>
+
         <TableRow
-            android:gravity="center"
             android:layout_marginBottom="16dp"
-            >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:weightSum="3">
+
             <RelativeLayout
-                android:tag="relativeLayout_security"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_width"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
                 android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
-                android:layout_marginRight="8dp"
                 android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
                 android:onClick="clickHandlerCell"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:tag="relativeLayout_security"
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/imageView_security"
@@ -166,23 +187,26 @@
                     android:layout_alignBottom="@id/imageView_security"
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"
+                    android:textAlignment="center"
                     android:background="@drawable/btn_main"
                     android:padding="1dp"
-                    android:textSize="12sp"
-                    android:text="사이버보안공학과" />
+                    android:text="@string/security"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
+
             <RelativeLayout
-                android:tag="relativeLayout_machine"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_width"
+                android:layout_marginEnd="8dp"
                 android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
-                android:layout_marginRight="8dp"
                 android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
                 android:onClick="clickHandlerCell"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:tag="relativeLayout_machine"
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/imageView_machine"
@@ -200,21 +224,23 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_main"
                     android:padding="1dp"
-                    android:textSize="12sp"
-                    android:text="융합기계공학과"/>
+                    android:text="@string/machine"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
+
             <RelativeLayout
-                android:tag="relativeLayout_beauty"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_height"
                 android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
-                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
                 android:onClick="clickHandlerCell"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:tag="relativeLayout_beauty"
+                android:layout_weight="1">
 
                 <ImageView
                     android:id="@+id/imageView_beauty"
@@ -230,28 +256,35 @@
                     android:layout_alignBottom="@id/imageView_beauty"
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"
+                    android:textAlignment="center"
                     android:background="@drawable/btn_main"
                     android:padding="1dp"
-                    android:textSize="10sp"
-                    android:text="글로벌의료뷰티학과" />
+                    android:text="@string/beauty"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
         </TableRow>
+
         <TableRow
-            android:gravity="center"
             android:layout_marginBottom="16dp"
-            >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="3"
+            android:gravity="center">
+
             <RelativeLayout
-                android:tag="relativeLayout_it"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_width"
                 android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_main"
                 android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
                 android:onClick="clickHandlerCell"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:tag="relativeLayout_it">
 
                 <ImageView
                     android:id="@+id/imageView_it"
@@ -269,21 +302,23 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_main"
                     android:padding="1dp"
-                    android:textSize="12sp"
-                    android:text="융합IT학과" />
+                    android:text="@string/it"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
+
             <RelativeLayout
-                android:tag="relativeLayout_bio"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_width"
                 android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_main"
                 android:clickable="true"
+                android:elevation="10dp"
                 android:onClick="clickHandlerCell"
-                >
+                android:orientation="vertical"
+                android:tag="relativeLayout_bio"
+                android:focusable="true">
 
                 <ImageView
                     android:id="@+id/imageView_bio"
@@ -301,21 +336,23 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_main"
                     android:padding="1px"
-                    android:textSize="12sp"
-                    android:text="의약바이오학과" />
+                    android:text="@string/bio"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
+
             <RelativeLayout
-                android:tag="relativeLayout_gfs"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_width"
                 android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
                 android:layout_marginEnd="8dp"
+                android:layout_weight="1"
                 android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
                 android:onClick="clickHandlerCell"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:tag="relativeLayout_gfs">
 
                 <ImageView
                     android:id="@+id/imageView_gfs"
@@ -331,28 +368,30 @@
                     android:layout_alignBottom="@id/imageView_gfs"
                     android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"
+                    android:textAlignment="center"
                     android:background="@drawable/btn_main"
                     android:padding="1dp"
-                    android:textSize="11sp"
-                    android:text="글로벌프론티어학과" />
+                    android:text="@string/gfs"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
         </TableRow>
         <TableRow
-            android:gravity="center"
             android:layout_marginBottom="16dp"
-            >
+            android:weightSum="3"
+            android:gravity="center">
+
             <RelativeLayout
-                android:tag="relativeLayout_design"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/major_box_width"
                 android:background="@drawable/btn_main"
-                android:elevation="10dp"
-                android:orientation="vertical"
-                android:layout_marginEnd="8dp"
                 android:clickable="true"
+                android:elevation="10dp"
+                android:focusable="true"
                 android:onClick="clickHandlerCell"
-                android:focusable="true">
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:tag="relativeLayout_design">
 
                 <ImageView
                     android:id="@+id/imageView_design"
@@ -370,8 +409,8 @@
                     android:layout_centerInParent="true"
                     android:background="@drawable/btn_main"
                     android:padding="1dp"
-                    android:textSize="12sp"
-                    android:text="융합디자인학과" />
+                    android:text="@string/design"
+                    android:textSize="12sp" />
 
             </RelativeLayout>
         </TableRow>
