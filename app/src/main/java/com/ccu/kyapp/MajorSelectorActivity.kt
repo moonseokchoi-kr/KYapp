@@ -96,9 +96,17 @@ class MajorSelectorActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 task.result?.forEach {
                     if(it.id == major){
-                        videoID = it.data["videoID"].toString()
-                        intent.putExtra("videoID",videoID)
-                        startActivity(intent)
+                        if(it.data["videoIDs"] != null){
+                            val videoIDs = it.data["videoIDs"] as ArrayList<String>
+
+                            intent.putExtra("videoIDs",videoIDs)
+                            startActivity(intent)
+                        }
+                        else if (it.data["videoID"] != null){
+                            videoID = it.data["videoID"].toString()
+                            intent.putExtra("videoID",videoID)
+                            startActivity(intent)
+                        }
                     }
                 }
             }else{

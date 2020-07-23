@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ccu.kyapp.MainActivity">
+        <activity android:name="com.ccu.kyapp.MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
         <activity android:name="com.ccu.kyapp.MajorActivity"
             android:configChanges="keyboardHidden|orientation|screenSize">

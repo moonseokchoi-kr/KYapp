@@ -47,7 +47,7 @@ class LoadingActivity : AppCompatActivity() {
         var it : Intent = intent
         val major = it.getStringExtra("major")
         val selector = it.getStringExtra("select")
-        var auth : FireBaseAuth = FireBaseAuth(major,this)
+        val auth  = FireBaseAuth(major,this)
         ProgressBar.visibility= View.VISIBLE
         it = Intent(this, MajorIntroActivity::class.java)
         lifecycleScope.launch{
@@ -62,7 +62,6 @@ class LoadingActivity : AppCompatActivity() {
                     "admission" -> {
                         if(auth.admission.isEmpty()){
                             it.setClass(this@LoadingActivity, AdmissionActivity::class.java)
-                            startActivity(it)
                         }
                         it.putExtra("Urls",auth.admission)
                     }

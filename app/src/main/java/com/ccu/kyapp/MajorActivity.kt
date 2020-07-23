@@ -4,18 +4,26 @@ package com.ccu.kyapp
 
 import android.animation.LayoutTransition
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenCreated
 import androidx.lifecycle.whenStarted
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.ccu.kyapp.auth.FireBaseAuth
+import com.ccu.kyapp.majorImage.ImagePagerViewHolder
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import kotlinx.android.synthetic.main.activity_major.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -37,12 +45,12 @@ import kotlinx.coroutines.withContext
  */
 class MajorActivity : AppCompatActivity() {
     /* this map is matches string previous view*/
-    private val majorMap : Map<String?, String> = mapOf("software" to "기업소프트웨어학과",
-        "clinical" to "임상의약학과", "extinguish" to "재난안전소방학과",
-        "security" to "사이버보안공학과", "machine" to "융합기계공학과",
-        "beauty" to "글로벌의료뷰티학과", "it" to "융합IT학과",
-        "bio" to "의약바이오학과", "gfs" to "글로벌프론티어학과",
-        "design" to "융합디자인학과")
+    private val majorMap : Map<String?, Any> = mapOf("software" to arrayOf("기업소프트웨어학과","http://www.konyang.ac.kr/software.do"),
+        "clinical" to arrayOf("임상의약학과","http://www.konyang.ac.kr/clinicalmed.do"), "extinguish" to arrayOf("재난안전소방학과","http://www.konyang.ac.kr/fire.do"),
+        "security" to arrayOf("사이버보안공학과","http://www.konyang.ac.kr/sec.do"), "machine" to arrayOf("융합기계공학과","http://www.konyang.ac.kr/mce.do"),
+        "beauty" to arrayOf("글로벌의료뷰티학과","http://www.konyang.ac.kr/kbeauty.do"), "it" to arrayOf("융합IT학과","http://www.konyang.ac.kr/computer.do"),
+        "bio" to arrayOf("의약바이오학과","http://www.konyang.ac.kr/medbiosci.do"), "gfs" to arrayOf("글로벌프론티어학과","http://gfs.konyang.ac.kr/"),
+        "design" to arrayOf("융합디자인학과","https://www.ky-design.net/"))
     /*
      transit layout
      */
@@ -58,7 +66,7 @@ class MajorActivity : AppCompatActivity() {
 
         major = intent.getStringExtra("major")
         /* set adapter for view page ImagePagerUri is adapter for ViewPager2*/
-        textView_toolbarText.text = majorMap[major]
+        textView_toolbarText.text = (majorMap[major] as Array<String>)[0]
         /* using toolbar*/
         val tb = Toolbar_major
         setSupportActionBar(tb)
@@ -66,8 +74,20 @@ class MajorActivity : AppCompatActivity() {
         /*add back button toolbar*/
         ab?.setDisplayHomeAsUpEnabled(true)
         ab?.setDisplayShowTitleEnabled(false)
-        if(intent.getStringExtra("videoID") != "")
-            YouTubePlayerView_major.play(intent.getStringExtra("videoID"))
+        lifecycle.addObserver(YouTubePlayerView_major)
+        if(intent.getStringExtra("videoID") != null){
+            recyclerView_video.visibility = View.GONE
+            YouTubePlayerView_major.addYouTubePlayerListener(object: AbstractYouTubePlayerListener(){
+                override fun onReady(youTubePlayer: YouTubePlayer) {
+                    youTubePlayer.loadVideo(intent.getStringExtra("videoID"),0f)
+                }
+            })
+        }
+        else if (intent.getStringArrayListExtra("videoIDs")!=null){
+            YouTubePlayerView_major.visibility = View.GONE
+            recyclerView_video.adapter = VideoViewAdapter(intent.getStringArrayListExtra("videoIDs"))
+            Log.d("VideoIDs",intent.getStringArrayListExtra("videoIDs").toString())
+        }
 
         relativeLayout_intro.setOnClickListener{
             Log.d("click intro ", "Click!!")
@@ -84,11 +104,10 @@ class MajorActivity : AppCompatActivity() {
         }
 
         relativeLayout_video.setOnClickListener {
-            transition.addChild(scrollView_video, linearLayout_video)
+            transition.addChild(linearLayout_video, linearLayout_video)
 
             // open
             if(!isOpen) {
-                scrollView_video.visibility = View.VISIBLE
                 linearLayout_video.visibility= View.VISIBLE
                 isOpen = true
                 enableLayoutTransitions()
@@ -96,11 +115,15 @@ class MajorActivity : AppCompatActivity() {
             //close
             else{
                 enableLayoutTransitions()
-                scrollView_video.visibility= View.GONE
                 linearLayout_video.visibility= View.GONE
                 isOpen = false
             }
 
+        }
+
+        relativeLayout_homePage.setOnClickListener{
+            val goWeb = Intent(Intent.ACTION_VIEW, Uri.parse((majorMap[major] as Array<String>)[1]))
+            startActivity(goWeb)
         }
     }
 
@@ -135,7 +158,39 @@ class MajorActivity : AppCompatActivity() {
         transition.enableTransitionType(LayoutTransition.CHANGE_APPEARING)
         transition.enableTransitionType(LayoutTransition.CHANGE_DISAPPEARING)
     }
+}
+/**
+ * This class is Adapter for recycler view that this play video
+ *
+ * @author MoonSeok Choi
+ * @version 0.1 make class and create function
+ * @see None
+ * @since 2020.07,23
+ */
+private class VideoViewAdapter(var videoIDs : ArrayList<String>) : RecyclerView.Adapter<VideoHolder>(){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.video_tab,parent,false)
+        return VideoHolder(view)
+    }
 
+    override fun getItemCount(): Int {
+        return videoIDs.size
+    }
+
+    override fun onBindViewHolder(holder: VideoHolder, position: Int) {
+        holder.bind(videoIDs[position])
+    }
+
+}
+private class VideoHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    var videoPlayer: YouTubePlayerView = itemView.findViewById(R.id.YouTubePlayerView_major)
+    fun bind(videoID : String){
+        videoPlayer.addYouTubePlayerListener(object: AbstractYouTubePlayerListener(){
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+                youTubePlayer.loadVideo(videoID,0f)
+            }
+        })
+    }
 }
 
 

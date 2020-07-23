@@ -27,7 +27,6 @@ class SchoolActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_school)
-        YouTubePlayerView_major.play("7DMAP3p62RA")
         val tb = Toolbar_school
         setSupportActionBar(tb)
         val ab = supportActionBar

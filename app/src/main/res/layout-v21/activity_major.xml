@@ -97,34 +97,38 @@
                 android:layout_centerInParent="true"
                 />
         </RelativeLayout>
-        <ScrollView
-            android:id="@+id/scrollView_video"
+
+        <LinearLayout
+            android:id="@+id/linearLayout_video"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:animateLayoutChanges="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:paddingStart="16dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:elevation="10dp"
             android:visibility="gone"
-            >
-            <LinearLayout
-                android:id="@+id/linearLayout_video"
+                >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_video"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+                <!--make Datbase use Recycler view-->
+            <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                android:id="@+id/YouTubePlayerView_major"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:animateLayoutChanges="true"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:paddingStart="16dp"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
-                android:elevation="10dp"
-                >
-                <!--make Datbase use Recycler view-->
-                <kr.co.prnd.YouTubePlayerView
-                    android:id="@+id/YouTubePlayerView_major"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
-            </LinearLayout>
-        </ScrollView>
+                app:autoPlay="false"
+                app:showFullScreenButton="true"
+                />
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/relativeLayout_admission"
             android:layout_width="match_parent"
@@ -156,6 +160,7 @@
                 />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/relativeLayout_homePage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -171,7 +176,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="학과장 인사말"
+                android:text="학과 홈페이지로 이동"
                 android:textSize="20sp"
                 android:paddingStart="20dp"
                 android:layout_centerInParent="true"
